@@ -1,7 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html {
-    background-color: #010317;
+/* background ellipse for hero section in home page  */
+.ellipse {
+    border-radius: 1177px;
+    opacity: 0.6;
+    background: var(--Brand-500, #2D6DE9);
+    mix-blend-mode: color-dodge;
+    filter: blur(150px);
+    width: 538px;
+    height: 1177px;
+    flex-shrink: 0;
+    top: -883px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
 }

@@ -4,7 +4,7 @@
 import { render, screen } from "@testing-library/react";
 import Page from "./page";
 
-it("App Router: Works with Server Components", () => {
+it("displays a nice hero section", () => {
   render(<Page />);
-  expect(screen.getByRole("heading")).toHaveTextContent("Chronus Sports");
+  expect(screen.getByRole("heading", {level: 1})).toHaveTextContent("Welcome to the Largest Sports Platform in the World!");
 });
