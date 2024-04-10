@@ -1,35 +1,36 @@
-# Next.js + Jest
+# Chronus Sports front-end repository
 
-This example shows how to configure Jest to work with Next.js.
+Project in progress.
 
-This includes Next.js' built-in support for Global CSS, CSS Modules and TypeScript. This example also shows how to use Jest with the App Router and React Server Components.
+## Tech stack
 
-> **Note:** Since tests can be co-located alongside other files inside the App Router, we have placed those tests in `app/` to demonstrate this behavior (which is different than `pages/`). You can still place all tests in `__tests__` if you prefer.
-
-## Deploy your own
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-jest&project-name=with-jest&repository-name=with-jest)
+- Next.js 14
+- Tailwind
+- Framer motion
+- Storybook
+- Jest
+- React-hook-forms
+- Zod
+- Zustand
+- embla-carousel
+- class-variance-authority
 
 ## How to Use
 
-Quickly get started using [Create Next App](https://github.com/vercel/next.js/tree/canary/packages/create-next-app#readme)!
-
-In your terminal, run the following command:
+Clone and run the project (requires Node 18 or higher)
 
 ```bash
-npx create-next-app --example with-jest with-jest-app
-```
-
-```bash
-yarn create next-app --example with-jest with-jest-app
-```
-
-```bash
-pnpm create next-app --example with-jest with-jest-app
+npm i && npm run dev
 ```
 
 ## Running Tests
 
 ```bash
 npm test
+```
+
+## Running Storybook
+
+```bash
+npm run storybook
 ```
