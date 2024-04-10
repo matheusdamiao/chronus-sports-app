@@ -9,7 +9,7 @@ describe("Home", () => {
     render(<Home />);
 
     const heading = screen.getByRole("heading", {
-      name: 'Chronus Sports',
+      name: 'Welcome to the Largest Sports Platform in the World!',
     });
 
     expect(heading).toBeInTheDocument();
