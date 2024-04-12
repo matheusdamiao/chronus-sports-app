@@ -80,3 +80,4 @@ export interface ButtonProps
         },
         )
        
+export default ButtonDesignSystem;
