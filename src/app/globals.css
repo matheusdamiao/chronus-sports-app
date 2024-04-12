@@ -19,4 +19,12 @@
     left: 0;
     right: 0;
     margin: 0 auto;
+
+}
+
+@media screen and (max-width: 1000px) {
+    .ellipse {
+        width: 100%;
+    }
+
 }

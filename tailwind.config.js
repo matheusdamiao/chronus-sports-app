@@ -37,7 +37,14 @@ module.exports = {
       'spacing-9xl': '96px',
       'spacing-10xl': '128px',
       'spacing-11xl': '160px',
-     }
+     },
+       ringColor:{
+         brand: 'rgba(45, 109, 233, 0.24)',
+         gray: 'rgba(152, 162, 179, 0.14)',
+         graySecondary: 'rgba(152, 162, 179, 0.20)',
+         error: 'rgba(240, 68, 56, 0.24)',
+       },
+
     },
     ////////////////////// these properties override tailwind's values with our own design system ones.
     fontWeight: {
@@ -77,6 +84,7 @@ module.exports = {
         'text-2xs': '18px',
         'text-tiny': '18px',  
       },
+    
       boxShadow: {
         'xs': '0px 1px 2px 0px rgba(16, 24, 40, 0.05)',
         'sm': '0px 1px 3px 0px rgba(16, 24, 40, 0.10), 0px 1px 2px 0px rgba(16, 24, 40, 0.06)',
