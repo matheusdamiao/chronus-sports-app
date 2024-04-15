@@ -1,7 +1,7 @@
 'use client';
 import React, { useRef } from "react";
 import { VariantProps, cva } from 'class-variance-authority';
-import { animate } from "framer-motion";
+
 
 export const button = cva(
     'border flex items-center justify-center text-nowrap self-start rounded-xl',   
@@ -79,5 +79,7 @@ export interface ButtonProps
             )
         },
         )
-       
+
+ButtonDesignSystem.displayName = "ButtonDesignSystem";
+
 export default ButtonDesignSystem;
