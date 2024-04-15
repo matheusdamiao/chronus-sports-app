@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import { ButtonDesignSystem } from "./components/Button";
 import placeHolderWhite from './../../public/icons/placeholder-white.svg'
@@ -8,16 +9,37 @@ import placeHolderBlue from './../../public/icons/placeholder-blue.svg'
 import dotWhite from './../../public/icons/dot-white.svg'
 import dotGreen from './../../public/icons/dot-green.svg'
 import dotGray from './../../public/icons/dot-gray.svg'
+import InputField from "./components/InputField";
+
+import email from './../../public/icons/email.svg'
+import { SubmitHandler, useForm } from "react-hook-form";
+import React from "react";
 
 
 
 
+// export const metadata = {
+//   title: "Chronus Sports",
+// };
 
-export const metadata = {
-  title: "Chronus Sports",
-};
+type IFormInput = {
+  currency: string,
+  Email: string,
+  Name: string;
+  Preço: string;
+}
 
 export default function Page() {
+
+  const { register, handleSubmit, getValues, watch, formState: {errors} } = useForm<IFormInput>({mode: 'all'})
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    console.log(data)
+    console.log(watch('currency')); 
+    console.log(watch('Email'));
+  } 
+
+
+  
 
   
   return (
@@ -187,6 +209,59 @@ export default function Page() {
                 <ButtonDesignSystem disabled className="my-2 flex-shrink-0 group" buttonType='destructivePrimary' onlyIcon={'2xl'} centralIcon={<Image alt='' className="group-hover:stroke-primary-brand-700 " src={placeHolderGray.src} width={20} height={20}/>} />
 
               </div>  
+      </div>
+
+
+
+      <div className="flex gap-10 lg:px-0 px-6  flex-wrap pt-20" >
+
+    
+          <form  onSubmit={handleSubmit(onSubmit)}>
+
+             <div className="flex flex-col gap-4">
+                <p className="mb-6">Input Field Default Component</p>
+
+                <InputField 
+                placeholder="Olivia da Silva"
+                label="Name"
+                sizes={'sm'}
+                {...register('Name', {minLength: {
+                  value: 4,
+                  message: 'Pelo menos 4 digitos, amigo'
+                },}
+                
+              )}
+                error={errors.Name}
+                />
+                
+                <InputField 
+                placeholder="olivia@untitledui.com"
+                label="Email"
+                sizes={'sm'}
+                hintText="This is a hint text to help user."
+                leftIcon={<Image src={email.src} alt='icon' width={20} height={20}/>} 
+                />
+               
+
+               <InputField 
+                placeholder="43.000"
+                label="Preço"
+                sizes={'sm'}
+                {...register('Preço', {minLength: {
+                  value: 4,
+                  message: 'Pelo menos 4 digitos, amigo'
+                },})}
+                hintText="This is a hint text to help user."
+                mask={getValues('currency')}
+                leftSelect={<select {...register("currency")}> 
+                              <option value="real">R$</option> 
+                              <option value="dolar">$</option> 
+                             </select>} 
+                />
+
+                <input type="submit"/>  
+             </div>
+           </form>
       </div>
      
     </div>
