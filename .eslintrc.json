@@ -3,10 +3,10 @@
     "next",
     "next/core-web-vitals"
   ],
-  "rules": {
-    "react/display-name": "off"
-  }
-  // "plugins": [
-  //   "prettier"
-  // ]
+  // "rules": {
+  //   "react/display-name": "off"
+  // }
+  "plugins": [
+    "prettier"
+  ]
 }
