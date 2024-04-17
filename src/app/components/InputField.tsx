@@ -3,10 +3,8 @@ import React, { useRef } from "react";
 import { VariantProps, cva } from 'class-variance-authority'
 import tooltipImage from './../../../public/icons/tooltip.svg'
 import tooltipError from './../../../public/icons/errorTooltip.svg'
-
-import { useForm, SubmitHandler, UseFormRegister, useWatch } from "react-hook-form"
 import Image from "next/image";
-import { maskCurrencyBR, maskCurrencyUS } from "../utils/maksFunctions";
+import { maskBrazilianPhoneNumber, maskBrazilianPhoneNumber2, maskCurrencyBR, maskCurrencyUS, maskUSPhoneNumber2 } from "../utils/maksFunctions";
 
 export const inputField = cva(
     'border-[1px] rounded-md border-primary-gray-300 w-full bg-primary-base-white shadow-input outline-none placeholder:text-primary-gray-500   focus:border-primary-brand-200',   
@@ -63,21 +61,41 @@ export interface InputProps
                  ...props }, ref) => {
     
                     React.useEffect(()=>{
-                        console.log('tem erro', error)
-                    },[error])
+                        console.log('tem mask', mask)
+                    },[mask])
 
 
 
                     const maskValues = (e: React.ChangeEvent<HTMLInputElement>) => {
                         
+                        console.log(e.target.value);
 
                         if(mask === 'real'){
+                            console.log('real');
                             const {value} = e.target;
-                            e.target.value = maskCurrencyBR(value);
+                            return e.target.value = maskCurrencyBR(value);
                         }
                         if(mask === 'dolar'){
+                            console.log('dolar');
+
                             const {value} = e.target;
-                            e.target.value = maskCurrencyUS(value);
+                           return  e.target.value = maskCurrencyUS(value);
+                        }
+
+                        if(mask === 'BR'){
+                          
+
+                            const {value} = e.target;
+                            console.log(value);
+                           return  e.target.value = maskBrazilianPhoneNumber2(value);
+                        }
+
+                        if(mask === 'US'){
+                            console.log('US');
+
+                            const {value} = e.target;
+                            console.log(value);
+                           return  e.target.value = maskUSPhoneNumber2(value);
                         }
                      }
                  
