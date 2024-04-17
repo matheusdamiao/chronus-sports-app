@@ -44,12 +44,12 @@ export default function Page() {
     
   } 
 
-
-  React.useEffect(()=>{
-    console.log(getValues('currency'))
-    const moeda = watch('currency');
-    console.log(moeda);
-  },[])
+  const id = useId();
+//   React.useEffect(()=>{
+//     console.log(getValues('currency'))
+//     const moeda = watch('currency');
+//     console.log(moeda);
+//   },[])
   
 
   
@@ -304,7 +304,7 @@ export default function Page() {
                 }}            
                 render={({ field: { onChange, onBlur, value, ref } }) => (
                   <ReactSelect
-                    instanceId={useId()}
+                    instanceId={id}
                     onChange={onChange}
                     styles={{
                       control: (baseStyles, state) => ({
