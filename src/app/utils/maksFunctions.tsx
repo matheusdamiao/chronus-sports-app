@@ -57,3 +57,29 @@ export function maskUSPhoneNumber(value: string): string {
   value = value.replace(/^(\d{3})(\d{3})(\d{4})$/, "$1-$2-$3"); // Format as (000) 000-0000
   return value;
 }
+
+
+
+export function maskBirthday(value: string): string {
+  // Remove all non-digit characters
+  const digits = value.replace(/\D/g, "");
+
+  // Apply formatting based on the number of digits
+  let formattedValue = "";
+  if (digits.length > 0) {
+    formattedValue = `${digits.slice(0, 2)}`; // Add day
+  }
+  if (digits.length > 2) {
+    formattedValue += `/${digits.slice(2, 4)}`; // Add month
+  }
+  if (digits.length > 4) {
+    formattedValue += `/${digits.slice(4, 8)}`; // Add year
+  }
+
+  // Handle case where user deletes characters
+  if (value.length < formattedValue.replace(/\D/g, "").length) {
+    formattedValue = formattedValue.slice(0, value.length);
+  }
+
+  return formattedValue;
+}

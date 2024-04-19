@@ -1,17 +1,21 @@
 'use client';
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { VariantProps, cva } from 'class-variance-authority'
 import tooltipImage from './../../../public/icons/tooltip.svg'
 import tooltipError from './../../../public/icons/errorTooltip.svg'
 import Image from "next/image";
-import { maskBrazilianPhoneNumber, maskBrazilianPhoneNumber2, maskCurrencyBR, maskCurrencyUS, maskUSPhoneNumber2 } from "../utils/maksFunctions";
+import eyesOpen from './../../../public/icons/eyesOpen.svg'
+import { maskBirthday, maskBrazilianPhoneNumber, maskBrazilianPhoneNumber2, maskCurrencyBR, maskCurrencyUS, maskUSPhoneNumber2 } from "../utils/maksFunctions";
 
 export const inputField = cva(
-    'border-[1px] rounded-md border-primary-gray-300 w-full bg-primary-base-white shadow-input outline-none placeholder:text-primary-gray-500   focus:border-primary-brand-200',   
+    'border-[1px] rounded-md  w-full bg-[transparent] shadow-input outline-none placeholder:text-primary-gray-500   focus:border-primary-brand-200',   
     {
         variants: {
             primary: {
-                'default': ''
+                'default': 'border-primary-gray-300 ',
+                'dark': 'border-[#292E38] bg-transparent max-w-[360px]', 
+                'small-dark': 'flex-grow-0 flex-0 !max-w-[100px] w-full border-[#292E38] bg-transparent',
+                'big-dark': 'border-[#292E38] bg-transparent',
             },
             sizes:{
                sm:'py-spacing-md px-[12px]',
@@ -39,36 +43,45 @@ export interface InputProps
         error?: any; 
         placeholder?: string;
         mask?: string,
+        titulo: string,
+     
     }
 
   
 
       export const InputField = React.forwardRef<HTMLInputElement, InputProps>(
-        ({className,
-         label,
-          leftIcon,
-           leftSelect,
-            rightIcon,
-             hintText, 
-             error, 
-             rightSelect,
-              placeholder,
-               tooltip, 
-               inputType = 'text',
-                primary, 
-                sizes,
-                mask,
-                 ...props }, ref) => {
-    
-                    React.useEffect(()=>{
-                        console.log('tem mask', mask)
-                    },[mask])
+        ({className,label, leftIcon, leftSelect, rightIcon, hintText, error, 
+             titulo, rightSelect, placeholder, tooltip, inputType = 'text',
+                primary, sizes, mask, ...props }, ref) => {
 
+
+                    const [isHidden, setIsHidden] = useState(true);
+                    const [isPassword, setIsPassword] = useState(false);
+
+                    console.log(inputType);
+                    const changeFormat = () =>{
+                        if(inputType === 'password') {
+                            setIsHidden(!isHidden);
+                            inputType = 'text'
+                            console.log(inputType);
+                        } else{
+                            setIsHidden(!isHidden);
+                            inputType = 'password'
+                        }
+                    }
 
 
                     const maskValues = (e: React.ChangeEvent<HTMLInputElement>) => {
                         
                         console.log(e.target.value);
+
+
+                        
+
+                        if(mask === 'birthday') {
+                            const {value } = e.target;
+                            return e.target.value = maskBirthday(value);
+                        }
 
                         if(mask === 'real'){
                             console.log('real');
@@ -102,8 +115,8 @@ export interface InputProps
                   
             return (
                 <div className="flex flex-col gap-[6px]">
-                    <label htmlFor={label} className="text-primary-gray-700 font-medium text-text-sm">{label}</label>
-                    <div className={`relative  w-[343px] `}>
+                    <label htmlFor={label} className="text-primary-gray-700 font-medium text-text-sm">{titulo}</label>
+                    <div className={`relative  max-w-[385px] `}>
 
                         {/* LEFT ICONS and SELECT */}
                         <div className="absolute top-[0.7rem] left-[12px] ">
@@ -118,8 +131,8 @@ export interface InputProps
                         <input
                         ref={ref}
                         id={label}
-                        className={inputField({className: `${leftIcon ? 'pl-10': null} ${leftSelect ? 'pl-16': null} ${error ? '!border-primary-error-300 shadow-input-on-error' : ''}`, primary, sizes})} {...props} 
-                        type={inputType ? inputType : 'text'} 
+                        className={inputField({className: `${leftIcon ? 'pl-10': null} ${leftSelect ? 'pl-16': null} ${error ? '!border-primary-error-300 shadow-input-on-error' : ''} pr-9`, primary, sizes})} {...props} 
+                        type={inputType === 'password' ? isHidden ? 'password' : 'text' : 'text'} 
                         placeholder={placeholder}
                         name={label}
                         onChange={(e)=> {
@@ -128,17 +141,15 @@ export interface InputProps
                        
                           />
                         <div className="absolute right-[12px] top-[0.8rem] cursor-help">
-                            <Image src={!error ? tooltipImage : tooltipError} alt='' width={16} height={16} className=""/>
+                            {inputType === 'password' ? null : <Image src={!error ? tooltipImage : tooltipError} alt='' width={16} height={16} className=""/>}
                             {tooltip || tooltip && error }
                         </div>
                         {/* RIGHT ICONS and SELECT */}
-                        <div className="absolute top-[0.7rem] right-[12px] ">
-                            {rightIcon && rightIcon}
+                        <div onClick={()=> changeFormat()} className="hover:cursor-pointer absolute top-[0.7rem] right-[12px] ">
+                             {rightIcon && !inputType ? rightIcon : isHidden ? rightIcon : <Image src={eyesOpen} alt='' width={24} height={24}/>}
                         </div>
                         <div className="absolute top-[0.6rem] right-[10px] ">
-                        {rightSelect && 
-                           rightSelect
-                        }
+                            {rightSelect && rightSelect}
                         </div>
                     </div>
                     {hintText && <small className="text-primary-gray-600 text-text-sm">{hintText}</small>}
