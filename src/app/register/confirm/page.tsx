@@ -37,7 +37,7 @@ export default function Page() {
 
 
   return (
-    <div className="flex flex-col lg:pt-[88px] h-min-[100svh] h-full">
+    <div className="flex flex-col lg:pt-[88px] h-[80svh] ">
       <div className="flex flex-col items-center gap-spacing-3xl">
            <div className='hidden lg:block w-[50px] max-h-[49px] pl-[11px] pb-[12px] pt-[11px] pr-[11px] border-[#2F333D] relative rounded-[11px] border-[1px]'> 
                  {/*  letter icon */}
@@ -49,7 +49,7 @@ export default function Page() {
       </div>
 
 
-      <form className="pt-spacing-4xl flex flex-col gap-spacing-2xl w-full !max-w-[385px]"  onSubmit={handleSubmit(onSubmit)}>
+      <form className="pt-spacing-4xl px-4 flex flex-col gap-spacing-2xl w-full !max-w-[385px]"  onSubmit={handleSubmit(onSubmit)}>
 
           <InputField 
               className="bg-transparent border-[#292E38]"

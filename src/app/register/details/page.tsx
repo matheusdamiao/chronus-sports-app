@@ -105,7 +105,7 @@ export default function Page() {
       </div>
 
 
-      <form className="pt-spacing-4xl flex flex-col gap-spacing-2xl w-full !max-w-[360px]"  onSubmit={handleSubmit(onSubmit)}>
+      <form className="pt-spacing-4xl flex flex-col px-4 gap-spacing-2xl w-full !max-w-[360px]"  onSubmit={handleSubmit(onSubmit)}>
 
           <InputField 
               // className="bg-transparent border-[#292E38]"
