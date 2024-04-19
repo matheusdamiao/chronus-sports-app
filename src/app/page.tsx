@@ -1,18 +1,11 @@
 import React from "react";
 
-
-
-
-
 export const metadata = {
   title: "Chronus Sports",
 };
 
-
 export default function Page() {
 
-
-  
   return (
     <>
     <div className="bg-[#010317] h-[100svh] py-10 relative flex">
@@ -22,9 +15,6 @@ export default function Page() {
         <h4 className="mx-auto max-w-[530px] text-text-md font-regular text-primary-gray-200 text-center">CHRONUS Sports is your gateway to the most comprehensive, diverse, and exciting sports content platform in the World.</h4>
       </div>
     </div>
-    
-     
-   
     </>
   );
 }
