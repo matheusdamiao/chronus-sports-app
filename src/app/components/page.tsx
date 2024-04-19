@@ -227,6 +227,7 @@ export default function Page() {
                 <p className="mb-6">Input Field Components</p>
 
                 <InputField 
+                titulo="Name"
                 placeholder="Olivia da Silva"
                 label="Name"
                 sizes={'sm'}
@@ -244,6 +245,7 @@ export default function Page() {
                 <InputField 
                 placeholder="olivia@untitledui.com"
                 label="Email"
+                titulo="Email"
                 sizes={'sm'}
                 {...register('Email', { 
                   required: "Add your e-mail",
@@ -261,6 +263,7 @@ export default function Page() {
                 <InputField 
                 placeholder="(21) 99493-3029"
                 label="Phone"
+                titulo="Phone"
                 mask={watch("phoneType", 'BR')}
                 sizes={'sm'}
                 {...register('Phone', {
@@ -280,6 +283,7 @@ export default function Page() {
                <InputField 
                 placeholder="43.000"
                 label="Preço"
+                titulo="Preço"
                 mask={watch("currency", 'real')}
                 sizes={'sm'}
                 {...register('Preço', {
