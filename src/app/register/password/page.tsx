@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useId, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm, useWatch } from "react-hook-form";
 import ButtonDesignSystem from "src/app/components/Button";
 import InputField from "src/app/components/InputField";
 import { useFormStore } from "src/app/store/formStore";
@@ -13,39 +13,92 @@ type IFormInput = {
   password: string;
   confirmPassword: string;
   termsOfUse: boolean;
+  pagePolicies: boolean;
 }
 
 
 export default function Page() {
-
-
-  const [hasCapitalLetter, setHasCapitalLetter] = useState(false);
-
   const data = useFormStore((state)=> state);
+
+  console.log(data);
+
+
+  const [hasValidLength, setHasValidLength] = useState(false); 
+  const [hasCapitalLetter, setHasCapitalLetter] = useState(false);  
+  const [hasSpecialCharacter, setHasSpecialCharacter] = useState(false);  
+  const [blockError, setBlockError] = useState(false);
+
+  function checkCapitalLetter(str: string) {
+    return Array.from(str).some(char => char !== char.toLowerCase());
+  }
+  function checkValidLength(str: string) {
+    return str.length >= 8 && str.length <= 20;
+  }
+
+  function checkSpecialCharacter(str: string) {
+    const specialCharactersRegex = /[^a-zA-Z0-9]/;
+    return specialCharactersRegex.test(str);
+  }
   
   
   const {setDetails} = useFormStore();
   const router = useRouter()
 
 
-  const { register, handleSubmit, control, setError, setValue, watch, formState: {errors, defaultValues: formData} } = useForm<IFormInput>({mode: 'all'})
-  const id = useId();
-  const id2 = useId();
-  const id3 = useId();
+  const { register, handleSubmit, setError, watch, formState: {errors} } = useForm<IFormInput>({mode: "all"})
+ 
+
+  const password = watch('password');
 
 
-  console.log(data);
+  React.useEffect(() => {
+    
+    if(password && checkCapitalLetter(password)) {
+      setHasCapitalLetter(true);
+    }
+    if(password  && !checkCapitalLetter(password)) {
+      setHasCapitalLetter(false);
+    }
 
+    if(password && checkValidLength(password)){
+      setHasValidLength(true);
+    }
+    if(password && !checkValidLength(password)){
+      setHasValidLength(false);
+    }
 
-  const checkPasswordPattern = (value: string) =>{}
+    if(password && checkSpecialCharacter(password)){
+      setHasSpecialCharacter(true);
+    }
+
+    if(!password && !checkSpecialCharacter(password)){
+      setHasSpecialCharacter(false);  
+    }
+
+    if(password && checkCapitalLetter(password) && checkSpecialCharacter(password) && checkValidLength(password)){
+      setBlockError(false);
+    }
+
+    if(password && !checkCapitalLetter(password) || !checkSpecialCharacter(password) || !checkValidLength(password)){
+      setBlockError(true);
+    }
+    
+  
+  }, [password])
+
 
 
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
 
+    if(password !== '' && !hasCapitalLetter || !hasSpecialCharacter || !hasValidLength ){
+      return setBlockError(true);
+    }
+
+
     if(data.password !== data.confirmPassword){
-      setError('confirmPassword', {
-        message: 'Password não confere. '
+      return setError('confirmPassword', {
+        message: 'Senha não confere. '
       })
     }
 
@@ -54,8 +107,8 @@ export default function Page() {
         
     });
     
-    router.push('/register/password')
-
+    router.push('/confirm')
+  
   }
 
 
@@ -81,8 +134,8 @@ export default function Page() {
       </div>
 
 
-      <form className="pt-spacing-4xl flex flex-col gap-spacing-2xl w-full !max-w-[382px] px-spacing-xl"  onSubmit={handleSubmit(onSubmit)}>
-
+      <form className="pt-spacing-4xl flex flex-col gap-spacing-2xl w-full px-spacing-xl"  onSubmit={handleSubmit(onSubmit)}>
+          
           <InputField 
               className="bg-transparent border-[#292E38]"
               primary={"big-dark"}
@@ -92,18 +145,29 @@ export default function Page() {
               inputType="password"
               sizes={'sm'}
               {...register('password', {
-              required: 'Please, add a password',
+              required: true,
               minLength: {
-              value: 4,
-              message: 'Pelo menos 4 digitos, amigo'
-              }} )}           
+                value: 8,
+                message: ''
+              },
+              maxLength: {
+                value: 20,
+                message: ''              }
+              } )}           
               rightIcon={<Image src={eyesCloed} alt='' width={25} height={25} />}
               error={errors.password}
           />
-
-          <div className="bg-primary-gray-800 h-[120px] w-full flex flex-col px-spacing-xl rounded-[6px]">
+          {/* {blockError ? <small className="text-primary-error-500">Atenção aos requisitios para sua senha</small> : ''} */}
+          <div className={`${!blockError ? 'bg-primary-gray-800': 'bg-primary-error-800'} h-[120px] w-full flex flex-col px-spacing-xl rounded-[6px] `}>
             <div className="flex gap-[10px] pb-spacing-md pt-spacing-xl items-center">
-              <span className="border-primary-gray-700 border-[2px] rounded-[4px] w-[16px] h-[16px] "></span>
+              {hasValidLength ?
+              <span className="border-primary-brand-500 bg-primary-brand-500 border-[2px] rounded-[4px] w-[16px] h-[16px] ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M10 3L4.5 8.5L2 6" stroke="white" strokeWidth="1.6666" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </span> :
+              <span className="border-primary-gray-700 border-[1px] rounded-[4px] w-[16px] h-[16px] "></span>
+              }
               <p className="text-primary-gray-300 text-text-xs">8-20 characters</p>
             </div>
             
@@ -114,14 +178,21 @@ export default function Page() {
                   <path d="M10 3L4.5 8.5L2 6" stroke="white" strokeWidth="1.6666" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </span> :
-              <span className="border-primary-gray-700 border-[2px] rounded-[4px] w-[16px] h-[16px] "></span>
+              <span className="border-primary-gray-700 border-[1px] rounded-[4px] w-[16px] h-[16px] "></span>
               }
               
               <p className="text-primary-gray-300 text-text-xs">At least one capital letter</p>
             </div>
 
             <div className="flex gap-[10px] pb-spacing-xl pt-spacing-md items-center">
-              <span className="border-primary-gray-700 border-[2px] rounded-[4px] w-[16px] h-[16px] "></span>
+             {hasSpecialCharacter ?
+              <span className="border-primary-brand-500 bg-primary-brand-500 border-[2px] rounded-[4px] w-[16px] h-[16px] ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M10 3L4.5 8.5L2 6" stroke="white" strokeWidth="1.6666" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </span> :
+              <span className="border-primary-gray-700 border-[1px] rounded-[4px] w-[16px] h-[16px] "></span>
+              }
               <p className="text-primary-gray-300 text-text-xs">At least one special character: #!$&@</p>
             </div>
           </div>
@@ -136,38 +207,41 @@ export default function Page() {
               label="confirmPassword"
               sizes={'sm'}
               {...register('confirmPassword', {
-                required: 'Please, add a password',
-                minLength: {
-                value: 4,
-                message: 'Pelo menos 4 digitos, amigo'
-                }} )}  
+                required: "Confirme sua senha",
+                } )}  
               rightIcon={<Image src={eyesCloed} alt='' width={25} height={25} />}
               error={errors.confirmPassword}
           />
   
-          <div className="flex gap-[6px]  items-center w-full">
-            <input type="checkbox" id="" 
-            {...register('termsOfUse',
-              {
-                required: true
-              }
-            )}
-            />
-            <p className="text-[#84888E] text-text-sm font-medium">I declare that I have read and accept the <span className="text-primary-base-white underline">Terms of Use</span></p>
-          </div>
+          <div className="flex w-full flex-col">
+            <div className="flex gap-[6px]">
+              <input type="checkbox" id="" 
+              {...register('termsOfUse',
+                {
+                  required: 'Aceite nossos termos'
+                }
+              )}
+              />
+              <p className="text-[#84888E] text-text-sm font-medium">I declare that I have read and accept the <span className="text-primary-base-white underline">Terms of Use</span></p>
+            </div>
+            {errors.termsOfUse && <small className="text-primary-error-500">{errors.termsOfUse.message}</small>}
+          </div> 
 
-          <div className="flex gap-[6px] items-center w-full">
-            <input type="checkbox" id="" 
-            {...register('termsOfUse',
-              {
-                required: true
-              }
-            )}
-            />
-            <p className="text-[#84888E] text-text-sm font-medium">I declare that I have read and accept the <span className="text-primary-base-white underline">Page Policies</span></p>
+          <div className="flex w-full flex-col">
+            <div className="flex gap-[6px]">
+              <input type="checkbox" id="" 
+              {...register('pagePolicies',
+                {
+                  required: 'Aceite nossos termos'
+                }
+              )}
+              />
+              <p className="text-[#84888E] text-text-sm font-medium">I declare that I have read and accept the <span className="text-primary-base-white underline">Page Policies</span></p>
+            </div>
+            {errors.pagePolicies && <small className="text-primary-error-500">{errors.pagePolicies.message}</small>}
           </div>  
 
-           <ButtonDesignSystem label="Finalize" className="w-full !border-none !outline-none rounded-[9px]" normal={'lg'} buttonType={"primary"} />       
+           <ButtonDesignSystem type="submit" label="Finalize" className="w-full !border-none !outline-none rounded-[8px]" normal={'lg'} buttonType={"primary"} />       
       </form>
 
     </div>

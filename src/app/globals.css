@@ -85,8 +85,7 @@
 }
 
 
-@layer {
-    .bg-transparent {
-        background-color: 'transparent';
-    }
+
+.bg-transparent {
+    background-color: 'transparent';
 }

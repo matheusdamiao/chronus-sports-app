@@ -6,10 +6,10 @@ import ReactSelect from "react-select";
 import ButtonDesignSystem from "src/app/components/Button";
 import InputField from "src/app/components/InputField";
 import { useFormStore } from "src/app/store/formStore";
+import { maskBirthday, maskBrazilianPhoneNumber2, maskUSPhoneNumber, maskUSPhoneNumber2 } from "src/app/utils/maksFunctions";
 
 
 type IFormInput = {
-  currency: string,
   Email: string,
   name: string;
   phoneType: string;
@@ -55,20 +55,40 @@ export default function Page() {
   const id3 = useId();
 
 
- 
-  React.useEffect(()=>{
+  const birthday = watch('birthday');
+  const phone = watch('phone');
+  const phoneType = watch('phoneType');
+  
 
-   
-     
-    
-  },[])
+  useEffect(()=>{
+    if(birthday !== ''){
+    const birthMasked = maskBirthday(String(birthday));
+    console.log(birthMasked);
+    setValue('birthday', birthMasked);
+    }
 
+
+    if(phone !== '' && phoneType === 'BR'){
+      console.log(phoneType);
+      const phoneMasked = maskBrazilianPhoneNumber2(String(phone));
+      console.log(phoneMasked);
+      setValue('phone', phoneMasked);
+      }
+    if(phone !== '' && phoneType === 'US'){
+        console.log(phoneType);
+        const phoneMasked = maskUSPhoneNumber(String(phone));
+        console.log(phoneMasked);
+        setValue('phone', phoneMasked);
+      }
+
+
+  },[birthday, phone, phoneType])
+  
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
 
     setDetails({
       birthday: data.birthday,
-      currency: data.currency,
       document: data.document,
       email: data.Email,
       favoriteSport: data.favoriteSport,
@@ -105,7 +125,7 @@ export default function Page() {
       </div>
 
 
-      <form className="pt-spacing-4xl flex flex-col px-4 gap-spacing-2xl w-full !max-w-[360px]"  onSubmit={handleSubmit(onSubmit)}>
+      <form className="pt-spacing-4xl flex flex-col px-4 gap-spacing-2xl w-full "  onSubmit={handleSubmit(onSubmit)}>
 
           <InputField 
               // className="bg-transparent border-[#292E38]"
@@ -243,7 +263,7 @@ export default function Page() {
                 className="!border-[#292E38]"
                 primary={'dark'}
                 titulo="Phone"
-                mask={watch("phoneType", 'BR')}
+                // mask={watch("phoneType", 'BR')}
                 sizes={'sm'}
                 {...register('phone', {
                   required: 'Add your phone number.',
@@ -371,7 +391,7 @@ export default function Page() {
                     {errors.heartTeam && <small className="text-primary-error-500 mt-0">{errors.heartTeam.message}</small>}
            </div>
 
-           <ButtonDesignSystem label="Continue" className="w-full !border-none !outline-none rounded-[9px]" normal={'lg'} buttonType={"primary"} />       
+           <ButtonDesignSystem label="Continue" className="w-full !border-none !outline-none rounded-[8px]" normal={'lg'} buttonType={"primary"} />       
       </form>
 
     </div>

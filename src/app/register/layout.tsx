@@ -18,8 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
+    
       <div className="flex lg:flex-row flex-col relative lg:h-[1200px] h-full ">
         <div className='absolute text-primary-warning-25 h-spacing-9xl z-[9999] lg:pl-spacing-4xl py-spacing-3xl px-spacing-xl lg:pt-spacing-4xl
          w-full'  >
@@ -41,7 +40,6 @@ export default function RootLayout({
         
       </div>
 
-      </body>
-    </html>
+    
   );
 }

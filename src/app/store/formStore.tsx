@@ -3,7 +3,6 @@ import { create } from 'zustand'
 
 
 export type FormData = {
-  currency: string,
   email: string,
   name: string;
   phoneType: string;
@@ -28,7 +27,6 @@ type FormStore = {
 
 export const useFormStore = create<FormStore>()((set) => ({
     formData: {
-        currency: '',
         email: '',
         name: '',
         phoneType: '',

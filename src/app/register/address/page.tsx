@@ -99,7 +99,7 @@ export default function Page() {
       </div>
 
 
-      <form className="pt-spacing-4xl flex flex-col px-4  gap-spacing-2xl w-full !max-w-[360px]"  onSubmit={handleSubmit(onSubmit)}>
+      <form className="pt-spacing-4xl flex flex-col px-4  gap-spacing-2xl w-full"  onSubmit={handleSubmit(onSubmit)}>
 
           <InputField 
               className="bg-transparent border-[#292E38]"
@@ -195,7 +195,7 @@ export default function Page() {
 
   
 
-           <ButtonDesignSystem label="Continue" className="w-full !border-none !outline-none rounded-[9px]" normal={'lg'} buttonType={"primary"} />       
+           <ButtonDesignSystem label="Continue" className="w-full !border-none !outline-none rounded-[8px]" normal={'lg'} buttonType={"primary"} />       
       </form>
 
     </div>
