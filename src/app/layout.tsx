@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import './globals.css'
+import MainMenu from './components/mainMenu';
 
 export const metadata: Metadata = {
   title: 'Chronus Sports',
@@ -13,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      
+      <body>
+        {children}
+      </body>
     </html>
   );
 }
