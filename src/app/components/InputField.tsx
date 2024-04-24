@@ -13,7 +13,7 @@ export const inputField = cva(
         variants: {
             primary: {
                 'default': 'border-primary-gray-300 ',
-                'dark': 'border-[#292E38] bg-transparent max-w-[360px]', 
+                'dark': 'border-[#292E38] bg-transparent ', 
                 'small-dark': 'flex-grow-0 flex-0 !max-w-[100px] w-full border-[#292E38] bg-transparent',
                 'big-dark': 'border-[#292E38] bg-transparent',
             },
@@ -44,13 +44,13 @@ export interface InputProps
         placeholder?: string;
         mask?: string,
         titulo: string,
-     
+        labelColor?: string;
     }
 
   
 
       export const InputField = React.forwardRef<HTMLInputElement, InputProps>(
-        ({className,label, leftIcon, leftSelect, rightIcon, hintText, error, 
+        ({className,label, leftIcon, leftSelect, rightIcon, hintText, error, labelColor,
              titulo, rightSelect, placeholder, tooltip, inputType = 'text',
                 primary, sizes, mask, ...props }, ref) => {
 
@@ -58,7 +58,7 @@ export interface InputProps
                     const [isHidden, setIsHidden] = useState(true);
                     const [isPassword, setIsPassword] = useState(false);
 
-                    console.log(inputType);
+                    // console.log(inputType);
                     const changeFormat = () =>{
                         if(inputType === 'password') {
                             setIsHidden(!isHidden);
@@ -115,9 +115,9 @@ export interface InputProps
                   
             return (
                 <div className="flex flex-col gap-[6px]">
-                    <label htmlFor={label} className="text-primary-gray-700 font-medium text-text-sm">{titulo}</label>
-                    <div className={`relative  max-w-[385px] `}>
-
+                    <label htmlFor={label} className={`${labelColor ? `text-${labelColor}` : 'text-[#84888E]'} font-medium text-text-sm `}>{titulo}</label>
+                    <div className={`relative  `}>
+                   
                         {/* LEFT ICONS and SELECT */}
                         <div className="absolute top-[0.7rem] left-[12px] ">
                             {leftIcon && leftIcon}
@@ -135,13 +135,13 @@ export interface InputProps
                         type={inputType === 'password' ? isHidden ? 'password' : 'text' : 'text'} 
                         placeholder={placeholder}
                         name={label}
-                        onChange={(e)=> {
-                        maskValues(e)   
-                        }}
+                        // onChange={(e)=> {
+                        // maskValues(e)   
+                        // }}
                        
                           />
                         <div className="absolute right-[12px] top-[0.8rem] cursor-help">
-                            {inputType === 'password' ? null : <Image src={!error ? tooltipImage : tooltipError} alt='' width={16} height={16} className=""/>}
+                            {inputType === 'password' ? null : !error ? '' : <Image src={tooltipError} alt='' width={16} height={16} />  }
                             {tooltip || tooltip && error }
                         </div>
                         {/* RIGHT ICONS and SELECT */}

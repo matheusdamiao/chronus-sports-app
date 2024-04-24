@@ -4,15 +4,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react'
 
-type PropTypes = {
-    urls: string
-}
 
 const StepsMenuSignUp = () => {
     const pathName =  usePathname();
-    console.log(pathName);
-
-    let urls: string = 'a'
    
   return (
     <div className='pt-spacing-6xl mt-spacing-9xl w-full flex lg:flex-col justify-center px-[45px] lg:pl-[30px] z-[999] gap-[30px] lg:gap-[40px] font-sans'>
