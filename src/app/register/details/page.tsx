@@ -82,7 +82,7 @@ export default function Page() {
       }
 
 
-  },[birthday, phone, phoneType])
+  },[birthday, phone, phoneType, setValue])
   
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {

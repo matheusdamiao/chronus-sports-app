@@ -176,7 +176,7 @@ const MainMenu = () => {
                           <ButtonDesignSystem normal={'lg'} buttonType={"secondaryGray"} leftIcon={<Image src={google} alt='' />}  className="border-[#292E38] gap-spacing-lg !bg-transparent w-full !rounded-[8px]" label="Sign In with Google" />         
                         </div>
                       </div>
-                      <small className=' text-center pt-spacing-lg text-primary-gray-600 text-text-sm'>Don't have an account? <span className='text-primary-brand-700 font-semibold'>Sign up</span></small>
+                      <small className=' text-center pt-spacing-lg text-primary-gray-600 text-text-sm'> Don&apos;t have an account? <span className='text-primary-brand-700 font-semibold'>Sign up</span></small>
               
                     </form>
 
