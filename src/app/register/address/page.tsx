@@ -196,6 +196,11 @@ export default function Page() {
            <ButtonDesignSystem label="Continue" className="w-full !border-none !outline-none rounded-[8px]" normal={'lg'} buttonType={"primary"} />       
       </form>
 
+      <div className='items-center justify-between text-[#84888E] w-full pt-10 px-8 flex lg:hidden'>
+            <a href='/termos_de_usp.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Termos e Condições</a>
+            <a href='/politica_de_privacidade.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Política de Privacidade</a>
+
+       </div>                       
     </div>
    
   );

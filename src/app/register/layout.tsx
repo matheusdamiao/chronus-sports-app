@@ -33,11 +33,11 @@ export default function RootLayout({
 
 
           <div className='text-primary-base-white z-10 pb-36  w-full max-w-[382px]'>{children}</div>
+          
         </div>
         <Image src={bg} alt='' className="absolute top-[-100px] h-[600px] w-full right-0 left-0 mx-auto lg:hidden" />
 
        
-        
       </div>
 
     

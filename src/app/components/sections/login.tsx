@@ -40,6 +40,9 @@ const Login = () => {
           },
           body: JSON.stringify(bodyRequest)
         })
+
+        // const responseData = await loginUser.json();
+        // console.log(responseData);
         
         if(loginUser.status === 200){
             const responseData = await loginUser.json();

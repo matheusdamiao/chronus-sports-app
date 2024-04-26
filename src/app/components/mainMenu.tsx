@@ -15,6 +15,7 @@ import InputField from './InputField';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import spinner from './../../../public/icons/spinner.svg'
 
+
 type IFormInput = {
   email: string;
   password: string;
@@ -173,7 +174,7 @@ const MainMenu = () => {
             </ul>
           </div>
           <div className='lg:flex hidden relative'>
-            <ButtonDesignSystem label='Sign Up' className='text-primary-base-white border-none' normal={'lg'} buttonType={'linkColor'} />
+           <Link href='/register/details'><ButtonDesignSystem label='Sign Up' className='text-primary-base-white border-none' normal={'lg'} buttonType={'linkColor'} /> </Link>
             <ButtonDesignSystem label='Login' onClick={()=> handleLoginModal()} leftIcon={
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                   <g clipPath="url(#clip0_2158_17040)">
@@ -377,9 +378,9 @@ const MainMenu = () => {
 
             <small className='text-[#84888E] flex items-center justify-center w-full text-text-sm text-center gap-1 pt-spacing-4xl'>  Não tem uma conta? <Link href='/register/details' className='text-primary-base-white'> Cadastre-se</Link></small>  
             <div className='flex items-center justify-center text-[#84888E] flex-wrap gap-2 pt-spacing-8xl pb-4'>
-                <Link href='#' className='text-[13px] underline text-nowrap'> Termos e Condições</Link>
+                <a href='/termos_de_usp.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Termos e Condições</a>
                 -
-                <Link href='#' className='text-[13px] underline text-nowrap'> Política de Privacidade</Link>
+                <a href='/politica_de_privacidade.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Política de Privacidade</a>
             </div>       
           </div>
         </div>

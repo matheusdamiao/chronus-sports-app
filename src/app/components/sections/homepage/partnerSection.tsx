@@ -13,7 +13,7 @@ import Image from 'next/image'
 
 const PartnerSection = () => {
   return (
-    <div className='max-w-7xl w-full m-auto lg:py-[100px] pt-[30px] pb-[100px]'>
+    <div className='max-w-7xl w-full m-auto lg:py-[100px] pt-[30px] pb-[100px] lg:px-0 px-4'>
       <h3 className='text-text-md text-primary-gray-200 text-center pb-[50px] px-spacing-5xl lg:px-0 w-[85%] mx-auto lg:w-full'>Join the world&apos;s best companies and be part of the future of Sports.</h3>
       <div className='lg:flex hidden flex-wrap items-center justify-center max-w-[890px] mx-auto gap-[50px]'>
       {/* desktop order */}
