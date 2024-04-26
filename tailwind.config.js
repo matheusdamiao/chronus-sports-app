@@ -48,6 +48,7 @@ module.exports = {
     },
     ////////////////////// these properties override tailwind's values with our own design system ones.
     fontWeight: {
+      thin: '300',
       regular: '400',
       medium: '500',
       semibold: '600',

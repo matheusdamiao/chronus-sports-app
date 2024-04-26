@@ -9,7 +9,8 @@ const StepsMenuSignUp = () => {
     const pathName =  usePathname();
    
   return (
-    <div className='pt-spacing-6xl mt-spacing-9xl w-full flex lg:flex-col justify-center px-[45px] lg:pl-[30px] z-[999] gap-[30px] lg:gap-[40px] font-sans'>
+    <div className='flex flex-col justify-between lg:h-screen lg:sticky top-0 relative'>
+        <div className=' pt-spacing-6xl mt-spacing-9xl w-full flex lg:flex-col justify-center px-[45px] lg:pl-[30px] z-[999] gap-[30px] lg:gap-[40px] font-sans'>
 
             {/* step one */}
             <Link className='flex gap-spacing-xl ' href='/register/details'>
@@ -121,9 +122,20 @@ const StepsMenuSignUp = () => {
                 </div>
             </div>
 
+
+
+            
+
             
          
         
+        </div>
+
+        <div className='items-center justify-between text-[#84888E] pb-10 px-8 lg:flex hidden'>
+            <a href='/termos_de_usp.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Termos e Condições</a>
+            <a href='/politica_de_privacidade.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Política de Privacidade</a>
+
+        </div>
     </div>
   )
 }

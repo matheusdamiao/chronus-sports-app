@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import logoDesktop from './../../../public/images/logos-chronos/logo-desktop-horizontal-text.svg'
 import logoMobile from './../../../public/images/logos-chronos/logo-menu-mobile-simple.svg'
 import Link from 'next/link';
@@ -13,6 +13,8 @@ import facebook from './../../../public/icons/facebook.svg'
 import { AnimatePresence, motion } from 'framer-motion'
 import InputField from './InputField';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import spinner from './../../../public/icons/spinner.svg'
+
 
 type IFormInput = {
   email: string;
@@ -20,13 +22,16 @@ type IFormInput = {
 }
 
 const MainMenu = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const [isLoginPage, setLoginPage] = useState(false);
   const [isMobileMenuOpen, setIsOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   let size = useWindowDimensions()
 
+  const modalRef = useRef<HTMLDivElement>(null);
 
-  const { register, handleSubmit, formState: {errors, defaultValues: formData} } = useForm<IFormInput>({mode: 'all'})
+  const { register, handleSubmit, setError, setValue, formState: {errors}} = useForm<IFormInput>({mode: 'all'})
 
   useEffect(() => {
       if(size){
@@ -40,7 +45,22 @@ const MainMenu = () => {
         setIsLoginModalOpen(false);
       }
       }
-  }, [size]);
+
+
+      //  Fecha o modal quando clicado fora
+
+      function handleClickOutside(event: MouseEvent) {
+        if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+         setIsLoginModalOpen(false);
+        }
+      }
+      document.addEventListener('mousedown', handleClickOutside);
+    
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+
+  }, [size, isLoginModalOpen]);
 
 
   const handleLoginPage = () => {
@@ -66,9 +86,65 @@ const MainMenu = () => {
     setIsLoginModalOpen(!isLoginModalOpen)
   }
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
+
+ 
+  
+    
+    
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+
+    setIsLoading(true);
+
+
+    const bodyRequest = {
+        email: data.email,
+        password: data.password
+    }
+
+    try {
+        const loginUser = await fetch("https://customers.api.core.chronus-sports.biss.com.br/api/v1/Authentication", {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(bodyRequest)
+        })
+        
+        if(loginUser.status === 200){
+            const responseData = await loginUser.json();
+          console.log('deu certo!', loginUser);
+          console.log('veio jwt!', responseData.token);   
+          
+          setIsLoading(false);
+          alert('Bem-vindo a Chronos!')
+          setValue('email', '');
+          setValue('password', '');
+
+        } else {
+                setIsLoading(false);
+
+                setError('password', {
+                  message: 'Credenciais erradas. Tente novamente'
+                })
+              
+        }
+  
+        // console.log('veio algo', data);
+        
+      } catch (error) {
+        setIsLoading(false);
+
+        console.log('deu erro', error);
+        setError('password', {
+          message: "Algo de errado ocorreu. Tente novamente"
+        })
+      }
+
+
   }
+
+
 
   return (
     <div className='h-[80px] w-full bg-transparent absolute top-0 z-[99999]'>
@@ -98,7 +174,7 @@ const MainMenu = () => {
             </ul>
           </div>
           <div className='lg:flex hidden relative'>
-            <ButtonDesignSystem label='Sign Up' className='text-primary-base-white border-none' normal={'lg'} buttonType={'linkColor'} />
+           <Link href='/register/details'><ButtonDesignSystem label='Sign Up' className='text-primary-base-white border-none' normal={'lg'} buttonType={'linkColor'} /> </Link>
             <ButtonDesignSystem label='Login' onClick={()=> handleLoginModal()} leftIcon={
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                   <g clipPath="url(#clip0_2158_17040)">
@@ -122,18 +198,19 @@ const MainMenu = () => {
             <AnimatePresence>
               {isLoginModalOpen &&
                 <motion.div
+                  ref={modalRef}
                   key='modal'
                   variants={modalVariants}
                   initial='closed'
                   animate='open'
                   exit='exit'
-                  className='h-[440px] w-[350px] bg-primary-base-white absolute top-[60px] right-0 px-spacing-3xl py-spacing-3xl rounded-md'>
+                  className='h-[460px] w-[350px] bg-primary-base-white absolute top-[60px] right-0 px-spacing-3xl py-spacing-3xl rounded-md'>
                     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-5 w-full'>
                       <InputField 
                           className="text-primary-gray-700"
                           labelColor='text-primary-gray-700'
                           placeholder="Insira seu e-mail"
-                          label="Email"
+                          label="email"
                           titulo="Email"
                           sizes={'sm'}
                           primary={'default'}
@@ -172,7 +249,7 @@ const MainMenu = () => {
                       <div className='flex flex-col gap-spacing-3xl'>
                         <Link href='#' className='text-right text-primary-brand-700 font-semibold text-text-sm'>Forgot password?</Link>
                         <div className='flex flex-col gap-spacing-xl'>
-                          <ButtonDesignSystem label='Sign In'  buttonType={'primary'} normal={'lg'} className='w-full !rounded-md'/>
+                          <ButtonDesignSystem label='Sign In'  buttonType={'primary'} normal={'lg'} className='w-full !rounded-md' rightIcon={isLoading && <Image className="animate-spin" width={20} height={20} src={spinner} alt="Loading icon"/>}/>
                           <ButtonDesignSystem normal={'lg'} buttonType={"secondaryGray"} leftIcon={<Image src={google} alt='' />}  className="border-[#292E38] gap-spacing-lg !bg-transparent w-full !rounded-[8px]" label="Sign In with Google" />         
                         </div>
                       </div>
@@ -246,64 +323,64 @@ const MainMenu = () => {
           </div>
           <div className='px-4 pt-[142px] z-[999] h-full absolute w-full'>
             <h3 className='text-display-xs leading-display-xs w-10/12 mx-auto font-semibold text-primary-base-white text-center'>Faça login na sua conta Chronus Sports</h3>
-            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col pt-spacing-4xl gap-5 w-full'>
-              <InputField 
-                  className="bg-transparent"
-                  placeholder="Insira seu e-mail"
-                  label="Email"
-                  titulo="Email"
-                  sizes={'sm'}
-                  primary={'dark'}
-                  {...register('email', { 
-                    required: "Add your e-mail",
-                    pattern: {
-                    value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
-                    message: 'E-mail format is not correct'
-                  } },
-                  
-                )}
-                error={errors.email}
-              />
-              <InputField 
-                className="bg-transparent border-[#292E38]"
-                primary={"big-dark"}
-                placeholder="*************"
-                titulo="Senha"
-                label="password"
-                inputType="password"
-                sizes={'sm'}
-                {...register('password', {
-                required: true,
-                minLength: {
-                  value: 8,
-                  message: ''
-                },
-                maxLength: {
-                  value: 20,
-                  message: ''              }
-                } )}           
-                rightIcon={<Image src={eyesClosed} alt='' width={25} height={25} />}
-                error={errors.password}
+            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col pt-spacing-4xl w-full'>
+              <div className='flex flex-col gap-4'>
+                <InputField 
+                    placeholder="Insira seu e-mail"
+                    label="email"
+                    titulo="Email"
+                    sizes={'sm'}
+                    primary={'dark'}
+                    {...register('email', { 
+                      required: "Add your e-mail",
+                      pattern: {
+                      value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+                      message: 'E-mail format is not correct'
+                    } },
+                    
+                  )}
+                  error={errors.email}
                 />
-      
-            </form>
-            <div className='flex justify-between py-spacing-3xl'>
-              <div className='flex items-center gap-2'> 
-                <input type="checkbox" name="" id="" />
-                <small className='text-[#84888E]'>Lembre de mim</small>
+                <InputField 
+                  primary={"big-dark"}
+                  placeholder="*************" 
+                  titulo="Senha"
+                  label="password"
+                  inputType="password"
+                  sizes={'sm'}
+                  {...register('password', {
+                  required: true,
+                  minLength: {
+                    value: 8,
+                    message: 'Senha inválida'
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: 'Senha inválida'              }
+                  } )}           
+                  rightIcon={<Image src={eyesClosed} alt='' width={25} height={25} />}
+                  error={errors.password}
+                  />
+              </div>  
+              <div className='flex justify-between py-spacing-3xl'>
+                <div className='flex items-center gap-2'> 
+                  <input type="checkbox" name="" id="" />
+                  <small className='text-[#84888E]'>Lembre de mim</small>
+                </div>
+                <a href="" className='text-primary-base-white text-text-sm font-semibold'> Recuperar senha</a>
               </div>
-              <a href="" className='text-primary-base-white text-text-sm font-semibold'> Recuperar senha</a>
-            </div>
-            <div className='flex flex-col gap-spacing-xl'>
-              <ButtonDesignSystem normal={'lg'} buttonType={"primary"} className="border-none w-full !rounded-[8px]" label="Entrar" />         
-              <ButtonDesignSystem normal={'lg'} buttonType={"primary"} leftIcon={<Image src={google} alt='' />}  className="border-[#292E38] gap-spacing-lg  w-full !bg-[#0B111D] !rounded-[8px]" label="Entrar com Google" />         
-              <ButtonDesignSystem normal={'lg'} buttonType={"primary"} leftIcon={<Image src={facebook} alt='' />} className="border-[#292E38] gap-spacing-lg w-full !bg-[#0B111D] !rounded-[8px]" label="Entrar com Facebook" />         
-            </div>
-            <small className='text-[#84888E] flex items-center justify-center w-full text-text-sm text-center gap-1 pt-spacing-4xl'>  Não tem uma conta? <span className='text-primary-base-white'> Cadastre-se</span></small>  
+              <div className='flex flex-col gap-spacing-xl'>
+                <ButtonDesignSystem type='submit' normal={'lg'} buttonType={"primary"} className="border-none w-full !rounded-[8px]" label="Entrar" rightIcon={isLoading && <Image className="animate-spin" width={20} height={20} src={spinner} alt="Loading icon"/>} />         
+                <ButtonDesignSystem normal={'lg'} buttonType={"primary"} leftIcon={<Image src={google} alt='' />}  className="border-[#292E38] gap-spacing-lg  w-full !bg-[#0B111D] !rounded-[8px]" label="Entrar com Google" />         
+                <ButtonDesignSystem normal={'lg'} buttonType={"primary"} leftIcon={<Image src={facebook} alt='' />} className="border-[#292E38] gap-spacing-lg w-full !bg-[#0B111D] !rounded-[8px]" label="Entrar com Facebook" />         
+              </div>
+            </form>
+
+            <small className='text-[#84888E] flex items-center justify-center w-full text-text-sm text-center gap-1 pt-spacing-4xl'>  Não tem uma conta? <Link href='/register/details' className='text-primary-base-white'> Cadastre-se</Link></small>  
             <div className='flex items-center justify-center text-[#84888E] flex-wrap gap-2 pt-spacing-8xl pb-4'>
-                <Link href='#' className='text-[13px] underline text-nowrap'> Termos e Condições</Link>
+                <a href='/termos_de_usp.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Termos e Condições</a>
                 -
-                <Link href='#' className='text-[13px] underline text-nowrap'> Política de Privacidade</Link>
+                <a href='/politica_de_privacidade.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Política de Privacidade</a>
             </div>       
           </div>
         </div>

@@ -16,6 +16,7 @@ export const inputField = cva(
                 'dark': 'border-[#292E38] bg-transparent ', 
                 'small-dark': 'flex-grow-0 flex-0 !max-w-[100px] w-full border-[#292E38] bg-transparent',
                 'big-dark': 'border-[#292E38] bg-transparent',
+                'dark-with-bg': 'border-[#292E38] bg-[#182230] text-primary-gray-600'
             },
             sizes:{
                sm:'py-spacing-md px-[12px]',
@@ -63,7 +64,7 @@ export interface InputProps
                         if(inputType === 'password') {
                             setIsHidden(!isHidden);
                             inputType = 'text'
-                            console.log(inputType);
+                            // console.log(inputType);
                         } else{
                             setIsHidden(!isHidden);
                             inputType = 'password'
@@ -73,7 +74,7 @@ export interface InputProps
 
                     const maskValues = (e: React.ChangeEvent<HTMLInputElement>) => {
                         
-                        console.log(e.target.value);
+                        // console.log(e.target.value);
 
 
                         
@@ -84,12 +85,12 @@ export interface InputProps
                         }
 
                         if(mask === 'real'){
-                            console.log('real');
+                            // console.log('real');
                             const {value} = e.target;
                             return e.target.value = maskCurrencyBR(value);
                         }
                         if(mask === 'dolar'){
-                            console.log('dolar');
+                            // console.log('dolar');
 
                             const {value} = e.target;
                            return  e.target.value = maskCurrencyUS(value);
@@ -99,15 +100,15 @@ export interface InputProps
                           
 
                             const {value} = e.target;
-                            console.log(value);
+                            // console.log(value);
                            return  e.target.value = maskBrazilianPhoneNumber2(value);
                         }
 
                         if(mask === 'US'){
-                            console.log('US');
+                            // console.log('US');
 
                             const {value} = e.target;
-                            console.log(value);
+                            // console.log(value);
                            return  e.target.value = maskUSPhoneNumber2(value);
                         }
                      }

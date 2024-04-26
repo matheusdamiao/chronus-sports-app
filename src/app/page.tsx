@@ -5,6 +5,16 @@ import Image from "next/image";
 import heroDesktop from './../../public/images/home-desktop.png'
 import heroMobile from './../../public/images/hero-mobile.png'
 import MainMenu from "./components/mainMenu";
+import PartnerSection from "./components/sections/homepage/partnerSection";
+import FunctionalitiesSection from "./components/sections/homepage/FunctionalitiesSection";
+import CarouselCardsSection from "./components/sections/homepage/carouselCardsSection";
+import SportsCategoriesSection from "./components/sections/homepage/sportsCategoriesSection";
+import TrackPerformanceSection from "./components/sections/homepage/trackPerformanceSection";
+import MultiSensorySection from "./components/sections/homepage/multiSensorySectiont";
+import CtaSection from "./components/sections/homepage/ctaSection";
+import NewsLetterSection from "./components/sections/homepage/newsLetterSection";
+import FooterSection from "./components/sections/homepage/footerSection";
+
 
 export const metadata = {
   title: "Chronus Sports",
@@ -23,13 +33,23 @@ export default function Page() {
         <h4 className="mx-auto max-w-[530px] lg:text-text-md text-text-lg px-3 lg:px-0 font-regular text-primary-gray-200 text-center">CHRONUS Sports is your gateway to the most comprehensive, diverse, and exciting sports content platform in the World.</h4>
         <Link href='/register/details' className="cursor-pointer z-40"> <ButtonDesignSystem label="Register now" buttonType={"primary"} normal={"lg"} className="border-none self-center lg:mt-[8px] mt-[35px]" /></Link>
       </div>
-      <div className="lg:mx-auto lg:mt-[-200px]">
-        <Image src={heroDesktop} alt=''  className="hidden lg:block"/>
-        <div className="w-full h-[400px] relative flex items-center justify-center">
-           <span className="blur-mobile-bg-hero-home absolute lg:hidden " ></span>
+      <div className="lg:mx-auto max-h-[890px] lg:mt-[-200px]">
+        <Image src={heroDesktop} alt='' className="hidden lg:block"/>
+        <div className="w-full h-[330px] mt-[60px] pb-[50px] lg:py-0 lg:hidden relative flex items-center justify-center">
+           <span className="blur-mobile-bg-hero-home absolute lg:hidden"></span>
            <Image src={heroMobile} alt='' className="block lg:hidden z-[99]"/>
         </div>
       </div>
+      <PartnerSection/>
+      <FunctionalitiesSection/>
+      <CarouselCardsSection/>
+      <SportsCategoriesSection/>
+      <TrackPerformanceSection/>
+      <MultiSensorySection/>
+      <CtaSection/>
+      <NewsLetterSection/>
+      <FooterSection/>
+      
     </div>
    
     </>

@@ -1,5 +1,6 @@
 'use client';
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useId } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import ReactSelect from "react-select";
@@ -10,31 +11,37 @@ import { maskBirthday, maskBrazilianPhoneNumber2, maskUSPhoneNumber, maskUSPhone
 
 
 type IFormInput = {
-  Email: string,
+  email: string,
   name: string;
   phoneType: string;
-  favoriteSport: string;
+  gender: OptionsType;
+  favoriteSport: OptionsType;
   birthday: string;
   phone: string;
-  heartTeam: string;
+  heartTeam: OptionsType;
   document: string
 }
 
 
-const selectOptions = [
+const genderOptions = [
   { value: 'masculine', label: 'Masculine' },
   { value: 'feminine', label: 'Feminine' },
  
 ]
 
-const favoriteSports = [
+type OptionsType = {
+  value: string,
+  label: string
+}
+
+const sportsOptions = [
   { value: 'basketball', label: 'Basketball' },
   { value: 'soccer', label: 'Soccer' },
   { value: 'volleyball', label: 'Volleyball' },
 ]
 
 
-const heartTeams = [
+const heartTeamsOptions = [
   { value: 'corinthians', label: 'Corinthians' },
   { value: 'são paulo', label: 'São Paulo' },
   { value: 'fluminense', label: 'Fluminense' },
@@ -44,12 +51,21 @@ const heartTeams = [
 export default function Page() {
 
 
-
+  const router = useRouter();
   const {formData: storeFormData, setDetails} = useFormStore();
 
 
-
-  const { register, handleSubmit, control, setValue, watch, formState: {errors, defaultValues: formData} } = useForm<IFormInput>({mode: 'all'})
+  const { register, handleSubmit, control, setValue, watch, formState: {errors}}  = useForm<IFormInput>({mode: 'all', defaultValues: {
+    favoriteSport: {value: storeFormData.favoriteSport.value, label: storeFormData.favoriteSport.label },
+    name: storeFormData.name,
+    birthday: storeFormData.birthday,
+    document: storeFormData.document,
+    email: storeFormData.email,
+    heartTeam: storeFormData.heartTeam,
+    phone: storeFormData.phone,
+    phoneType: storeFormData.phoneType,
+    gender: storeFormData.gender,
+  }})
   const id = useId();
   const id2 = useId();
   const id3 = useId();
@@ -63,21 +79,16 @@ export default function Page() {
   useEffect(()=>{
     if(birthday !== ''){
     const birthMasked = maskBirthday(String(birthday));
-    console.log(birthMasked);
     setValue('birthday', birthMasked);
     }
 
 
     if(phone !== '' && phoneType === 'BR'){
-      console.log(phoneType);
       const phoneMasked = maskBrazilianPhoneNumber2(String(phone));
-      console.log(phoneMasked);
       setValue('phone', phoneMasked);
       }
     if(phone !== '' && phoneType === 'US'){
-        console.log(phoneType);
         const phoneMasked = maskUSPhoneNumber(String(phone));
-        console.log(phoneMasked);
         setValue('phone', phoneMasked);
       }
 
@@ -90,7 +101,8 @@ export default function Page() {
     setDetails({
       birthday: data.birthday,
       document: data.document,
-      email: data.Email,
+      gender: data.gender,
+      email: data.email,
       favoriteSport: data.favoriteSport,
       heartTeam: data.heartTeam,
       name: data.name,
@@ -98,7 +110,8 @@ export default function Page() {
       phoneType: data.phoneType
     });
     
-    alert('foi!');
+    router.push('/register/address');
+    
   }
 
 
@@ -147,11 +160,11 @@ export default function Page() {
             <InputField 
                 className="bg-transparent"
                 placeholder="olivia@untitledui.com"
-                label="Email"
+                label="email"
                 titulo="Email"
                 sizes={'sm'}
                 primary={'dark'}
-                {...register('Email', { 
+                {...register('email', { 
                   required: "Add your e-mail",
                   pattern: {
                   value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
@@ -159,7 +172,7 @@ export default function Page() {
                 } },
                 
               )}
-                error={errors.Email}
+                error={errors.email}
                 hintText="Don't worry. We wont' send any spam."
               
             />
@@ -186,7 +199,7 @@ export default function Page() {
             <label className="text-primary-gray-700 font-medium text-text-sm">Sex</label>
             <Controller 
                 control={control}
-                name="favoriteSport"
+                name="gender"
                 rules={{
                   required: 'Need to choose one option'
                 }}            
@@ -230,12 +243,13 @@ export default function Page() {
                           fontWeight: state.isSelected ? '600' : '400'
                       })
                     }}
+                    value={value}
                     onBlur={onBlur}
-                    options={selectOptions}
+                    options={genderOptions}
                   />
                 )}
                 />
-                    {errors.favoriteSport && <small className="text-primary-error-500 mt-0">{errors.favoriteSport.message}</small>}
+                    {errors.gender && <small className="text-primary-error-500 mt-0">{errors.gender.message}</small>}
            </div>
 
            <InputField 
@@ -327,8 +341,9 @@ export default function Page() {
                           fontWeight: state.isSelected ? '600' : '400'
                       })
                     }}
+                    value={value}
                     onBlur={onBlur}
-                    options={favoriteSports}
+                    options={sportsOptions}
                   />
                 )}
                 />
@@ -377,14 +392,14 @@ export default function Page() {
                         }),
                        option: (baseStyles, state) => ({
                         ...baseStyles,
-                          
                           backgroundColor: state.isFocused ? '#85A5EB' : 'transparent',
                           color: state.isSelected ? '#101828' : '#475467',
                           fontWeight: state.isSelected ? '600' : '400'
                       })
                     }}
+                    value={value}
                     onBlur={onBlur}
-                    options={heartTeams}
+                    options={heartTeamsOptions}
                   />
                 )}
                 />
@@ -394,6 +409,11 @@ export default function Page() {
            <ButtonDesignSystem label="Continue" className="w-full !border-none !outline-none rounded-[8px]" normal={'lg'} buttonType={"primary"} />       
       </form>
 
+      <div className='items-center justify-between text-[#84888E] w-full pt-10 px-8 flex lg:hidden'>
+            <a href='/termos_de_usp.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Termos e Condições</a>
+            <a href='/politica_de_privacidade.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Política de Privacidade</a>
+
+       </div>          
     </div>
    
   );

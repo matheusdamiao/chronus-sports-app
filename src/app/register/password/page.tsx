@@ -9,6 +9,34 @@ import { useFormStore } from "src/app/store/formStore";
 import eyesCloed from './../../../../public/icons/eyesClosed.svg'
 
 
+
+type RegisterUserType = {
+  fullName: string,
+  email: string,
+  documentNumber: string,
+  gender: string,
+  birthDate: string,
+  phone: string,
+  address: AddressType,
+  favoriteSport: string,
+  favoriteClub: string,
+  password: string,
+  acceptTermsUse: boolean,
+  acceptPrivacyPolicy: boolean,
+}
+
+type AddressType = {
+  street: string,
+  number: string,
+  complement: string,
+  neighborhood: string,
+  city: string,
+  state: string,
+  country: string,
+  zipCode: string,
+}
+
+
 type IFormInput = {
   password: string;
   confirmPassword: string;
@@ -18,9 +46,9 @@ type IFormInput = {
 
 
 export default function Page() {
-  const data = useFormStore((state)=> state);
+  const formData = useFormStore((state)=> state);
 
-  console.log(data);
+  // console.log(formData);
 
 
   const [hasValidLength, setHasValidLength] = useState(false); 
@@ -89,7 +117,7 @@ export default function Page() {
 
 
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
 
     if(password !== '' && !hasCapitalLetter || !hasSpecialCharacter || !hasValidLength ){
       return setBlockError(true);
@@ -104,10 +132,72 @@ export default function Page() {
 
     setDetails({
         password: data.password,
-        
+        acceptTermsUse: data.termsOfUse,
+        acceptPrivacyPolicy: data.pagePolicies,
     });
+
+    const formatedDate = formData.formData.birthday.split('/').reverse().join('/');
+    const birthDate = new Date(formatedDate).toISOString()
+
+
+    const bodyRequest: RegisterUserType = {
+      fullName: formData.formData.name,
+      email: formData.formData.email,
+      documentNumber: formData.formData.document,
+      gender: formData.formData.gender.value,
+      birthDate: birthDate,
+      phone: formData.formData.phone,
+      address: {
+        street: formData.formData.Street,
+        number: formData.formData.number,
+        complement: formData.formData.number,
+        neighborhood: formData.formData.District,
+        city: formData.formData.Estate,
+        state: formData.formData.Estate,
+        country: formData.formData.phoneType,
+        zipCode: formData.formData.CEP
+      },
+      favoriteClub: formData.formData.favoriteSport.value,
+      favoriteSport: formData.formData.favoriteSport.value,
+      password: formData.formData.password,
+      acceptTermsUse: formData.formData.acceptTermsUse,
+      acceptPrivacyPolicy: formData.formData.acceptPrivacyPolicy,
+    }
+
+    try {
+      const registerUser = await fetch("https://customers.api.core.chronus-sports.biss.com.br/api/v1/customer", {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(bodyRequest)
+      })
+      
+      const data = await registerUser.json();
+
+      if (data.statusCode === 400){
+        setError('password', {
+          message: 'Algo de errado ocorreu. Tente novamente'
+        })
+      } 
+
+      if(data.statusCode === 201){
+        console.log('deu certo!', data);
+        router.push('/confirm')
+
+      }
+
+      // console.log('veio algo', data);
+      
+    } catch (error) {
+      console.log('deu erro', error);
+      setError('password', {
+        message: "Algo de errado ocorreu. Tente novamente"
+      })
+    }
     
-    router.push('/confirm')
+    
   
   }
 
@@ -244,6 +334,12 @@ export default function Page() {
            <ButtonDesignSystem type="submit" label="Finalize" className="w-full !border-none !outline-none rounded-[8px]" normal={'lg'} buttonType={"primary"} />       
       </form>
 
+
+      <div className='items-center justify-between text-[#84888E] w-full pt-10 px-8 flex'>
+            <a href='/termos_de_usp.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Termos e Condições</a>
+            <a href='/politica_de_privacidade.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Política de Privacidade</a>
+
+       </div>               
     </div>
    
   );

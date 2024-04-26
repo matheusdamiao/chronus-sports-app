@@ -52,7 +52,7 @@ export default function Page() {
   const router = useRouter()
 
 
-  const { register, handleSubmit, control, setValue, watch, formState: {errors, defaultValues: formData} } = useForm<IFormInput>({mode: 'all'})
+  const { register, handleSubmit, control, setValue, watch, formState: {errors}} = useForm<IFormInput>({mode: 'all', defaultValues: storeFormData})
   const id = useId();
   const id2 = useId();
   const id3 = useId();
@@ -73,8 +73,6 @@ export default function Page() {
     router.push('/register/password')
 
   }
-
-
 
 
   return (
@@ -198,6 +196,11 @@ export default function Page() {
            <ButtonDesignSystem label="Continue" className="w-full !border-none !outline-none rounded-[8px]" normal={'lg'} buttonType={"primary"} />       
       </form>
 
+      <div className='items-center justify-between text-[#84888E] w-full pt-10 px-8 flex lg:hidden'>
+            <a href='/termos_de_usp.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Termos e Condições</a>
+            <a href='/politica_de_privacidade.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Política de Privacidade</a>
+
+       </div>                       
     </div>
    
   );

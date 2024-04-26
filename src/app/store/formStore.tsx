@@ -1,15 +1,20 @@
 'use client';
 import { create } from 'zustand'
 
+type OptionsType = {
+  value: string,
+  label: string
+}
 
 export type FormData = {
   email: string,
   name: string;
+  gender: OptionsType;
   phoneType: string;
-  favoriteSport: string;
+  favoriteSport: OptionsType;
   birthday: string;
   phone: string;
-  heartTeam: string;
+  heartTeam: OptionsType;
   document: string
   CEP: string;
   Estate: string;
@@ -17,6 +22,8 @@ export type FormData = {
   Street: string;
   number: string;
   password: string;
+  acceptTermsUse: boolean;
+  acceptPrivacyPolicy: boolean;
 }
 
 type FormStore = {
@@ -30,17 +37,20 @@ export const useFormStore = create<FormStore>()((set) => ({
         email: '',
         name: '',
         phoneType: '',
-        favoriteSport: '',
+        favoriteSport: {value: '', label: ''},
         birthday: '',
         phone: '',
-        heartTeam: '',
+        gender: {value:'', label: ''},
+        heartTeam: {value: '', label: ''},
         document: '',
         CEP: '',
         Estate: '',
         District: '',
         Street: '',
         number: '',
-        password: ''
+        password: '',
+        acceptTermsUse: false,
+        acceptPrivacyPolicy: false,
       },
       setDetails: (data) => set((state) => ({ formData: { ...state.formData, ...data } }))
 }))
