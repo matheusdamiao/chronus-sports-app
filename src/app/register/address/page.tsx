@@ -52,7 +52,7 @@ export default function Page() {
   const router = useRouter()
 
 
-  const { register, handleSubmit, control, setValue, watch, formState: {errors, defaultValues: formData} } = useForm<IFormInput>({mode: 'all'})
+  const { register, handleSubmit, control, setValue, watch, formState: {errors}} = useForm<IFormInput>({mode: 'all', defaultValues: storeFormData})
   const id = useId();
   const id2 = useId();
   const id3 = useId();
@@ -73,8 +73,6 @@ export default function Page() {
     router.push('/register/password')
 
   }
-
-
 
 
   return (

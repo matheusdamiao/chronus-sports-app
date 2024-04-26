@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ButtonDesignSystem from '../Button'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useFormStore } from 'src/app/store/formStore'
@@ -8,6 +8,7 @@ import eyesClosed from './../../../../public/icons/eyesClosed.svg'
 import google from './../../../../public/icons/google.svg'
 import facebook from './../../../../public/icons/facebook.svg'
 import Image from 'next/image'
+import spinner from './../../../../public/icons/spinner.svg'
 
 type ILoginInput = {
     email: string,
@@ -15,19 +16,60 @@ type ILoginInput = {
   }
 
 const Login = () => {
-    const {setDetails} = useFormStore();
-    const router = useRouter()
+
+  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false);
 
   const { register, handleSubmit, control, setError, setValue, watch, formState: {errors} } = useForm<ILoginInput>({mode: 'onSubmit'})
 
-  const onSubmit: SubmitHandler<ILoginInput> = (data) => {
+  const onSubmit: SubmitHandler<ILoginInput> = async (data) => {
 
-    setDetails({
+    setIsLoading(true);
+
+    const bodyRequest = {
         email: data.email,
-        password: data.password,
-    });
+        password: data.password
+    }
 
-    alert('Logou!')
+    try {
+        const loginUser = await fetch("https://customers.api.core.chronus-sports.biss.com.br/api/v1/Authentication", {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(bodyRequest)
+        })
+        
+        if(loginUser.status === 200){
+            const responseData = await loginUser.json();
+          console.log('deu certo!', loginUser);
+          console.log('veio jwt!', responseData.token);    
+          alert('Bem-vindo a Chronos!')
+          setValue('email', '');
+          setValue('password', '');
+          setIsLoading(false);
+
+        } else {
+                setIsLoading(false);
+                setError('password', {
+                  message: 'Credenciais erradas. Tente novamente'
+                })
+          
+              
+        }
+  
+        // console.log('veio algo', data);
+        
+      } catch (error) {
+        setIsLoading(false);
+        console.log('deu erro', error);
+        setError('password', {
+          message: "Algo de errado ocorreu. Tente novamente"
+        })
+      }
+
+    
   } 
 
 
@@ -84,7 +126,7 @@ const Login = () => {
                         <a href="" className='text-primary-base-white text-text-sm font-semibold'> Recuperar senha</a>
                     </div>
                     <div className='flex flex-col gap-spacing-xl'>
-                        <ButtonDesignSystem type='submit' normal={'lg'} buttonType={"primary"} className="border-none w-full !rounded-[8px]" label="Entrar" />         
+                        <ButtonDesignSystem type='submit' normal={'lg'} buttonType={"primary"} className="border-none w-full !rounded-[8px]" label="Entrar"  rightIcon={isLoading && <Image className="animate-spin" width={20} height={20} src={spinner} alt="Loading icon"/>}/>         
                         <ButtonDesignSystem normal={'lg'} buttonType={"primary"} leftIcon={<Image src={google} alt='' />}  className="border-[#292E38] gap-spacing-lg  w-full !bg-[#0B111D] !rounded-[8px]" label="Entrar com Google" />         
                         <ButtonDesignSystem normal={'lg'} buttonType={"primary"} leftIcon={<Image src={facebook} alt='' />} className="border-[#292E38] gap-spacing-lg w-full !bg-[#0B111D] !rounded-[8px]" label="Entrar com Facebook" />         
                     </div>
