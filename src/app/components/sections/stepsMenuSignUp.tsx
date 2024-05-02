@@ -132,7 +132,7 @@ const StepsMenuSignUp = () => {
         </div>
 
         <div className='items-center justify-between text-[#84888E] pb-10 px-8 lg:flex hidden'>
-            <a href='/termos_de_usp.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Termos e Condições</a>
+            <a href='/termos_de_uso.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Termos e Condições</a>
             <a href='/politica_de_privacidade.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Política de Privacidade</a>
 
         </div>
