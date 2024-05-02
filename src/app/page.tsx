@@ -2,8 +2,9 @@ import React from "react";
 import ButtonDesignSystem from "./components/Button";
 import Link from "next/link";
 import Image from "next/image";
-import heroDesktop from './../../public/images/home-desktop.png'
-import heroMobile from './../../public/images/hero-mobile.png'
+import heroDesktop from './../../public/images/home-desktop-up.webp'
+import heroMobile from './../../public/images/home-mobile-up.webp'
+
 import MainMenu from "./components/mainMenu";
 import PartnerSection from "./components/sections/homepage/partnerSection";
 import FunctionalitiesSection from "./components/sections/homepage/FunctionalitiesSection";
@@ -34,10 +35,10 @@ export default function Page() {
         <Link href='/register/details' className="cursor-pointer z-40"> <ButtonDesignSystem label="Register now" buttonType={"primary"} normal={"lg"} className="border-none self-center lg:mt-[8px] mt-[35px]" /></Link>
       </div>
       <div className="lg:mx-auto max-h-[890px] lg:mt-[-200px]">
-        <Image src={heroDesktop} alt='' className="hidden lg:block"/>
+        <Image src={heroDesktop} priority alt='' className="hidden lg:block"/>
         <div className="w-full h-[330px] mt-[60px] pb-[50px] lg:py-0 lg:hidden relative flex items-center justify-center">
            <span className="blur-mobile-bg-hero-home absolute lg:hidden"></span>
-           <Image src={heroMobile} alt='' className="block lg:hidden z-[99]"/>
+           <Image src={heroMobile} priority alt='' className="block lg:hidden z-[99]"/>
         </div>
       </div>
       <PartnerSection/>

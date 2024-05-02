@@ -15,33 +15,8 @@ type IFormInput = {
   District: string;
   Street: string;
   number: string;
+  complement: string;
 }
-
-
-const selectOptions = [
-  { value: 'masculine', label: 'Masculine' },
-  { value: 'feminine', label: 'Feminine' },
- 
-]
-
-const favoriteSports = [
-  { value: 'basketball', label: 'Basketball' },
-  { value: 'soccer', label: 'Soccer' },
-  { value: 'volleyball', label: 'Volleyball' },
-]
-
-
-const heartTeams = [
-  { value: 'corinthians', label: 'Corinthians' },
-  { value: 'são paulo', label: 'São Paulo' },
-  { value: 'fluminense', label: 'Fluminense' },
-  { value: 'flamengo', label: 'Flamengo' },
-]
-
-
-
-
-
 
 
 export default function Page() {
@@ -52,12 +27,30 @@ export default function Page() {
   const router = useRouter()
 
 
-  const { register, handleSubmit, control, setValue, watch, formState: {errors}} = useForm<IFormInput>({mode: 'all', defaultValues: storeFormData})
-  const id = useId();
-  const id2 = useId();
-  const id3 = useId();
+  const { register, handleSubmit, watch, setValue, formState: {errors}} = useForm<IFormInput>({mode: 'onSubmit', defaultValues: storeFormData})
+
+ const cepData = watch('CEP');
+
+ const fetchCep = async () =>{
+  const respose = await fetch(`https://customers.api.core.chronus-sports.biss.com.br/api/v1/address/${cepData}`)
+  const data = await respose.json();
+  console.log(data);
+  if(data.data.response){
+    setValue('Street', data.data.response.street)
+    setValue('Estate', `${data.data.response.state !== null ? `${data.data.response.state} - ${data.data.response.city}` : ''}`)
+    setValue('District', data.data.response.neighborhood)
+  }
+ }
 
 
+ useEffect(()=>{
+  const cepRegex = /\d{5}-?\d{3}/
+
+  if(cepData !== '' && cepRegex.test(cepData)){
+    fetchCep();
+  }
+  // eslint-disable-next-line
+ },[cepData])
 
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
@@ -68,6 +61,7 @@ export default function Page() {
         District: data.District,
         Street: data.Street,
         number: data.number,
+        complement: data.complement
     });
     
     router.push('/register/password')
@@ -97,7 +91,7 @@ export default function Page() {
       </div>
 
 
-      <form className="pt-spacing-4xl flex flex-col px-4  gap-spacing-2xl w-full"  onSubmit={handleSubmit(onSubmit)}>
+      <form className="pt-spacing-4xl flex flex-col px-4  gap-spacing-2xl w-full max-w-[360px]"  onSubmit={handleSubmit(onSubmit)}>
 
           <InputField 
               className="bg-transparent border-[#292E38]"
@@ -108,10 +102,15 @@ export default function Page() {
               sizes={'sm'}
               {...register('CEP', {
               required: 'Add your zip code',
-              minLength: {
-              value: 4,
-              message: 'Pelo menos 4 digitos, amigo'
-              }} )}           
+              // minLength: {
+              // value: 4,
+              // message: 'Pelo menos 4 digitos, amigo'
+              // },
+              // pattern: {
+              //   value: /\d{5}-?\d{3}/,
+              //   message: 'Formato de CEP inválido'
+              // }
+            } )}           
               
               error={errors.CEP}
           />
@@ -189,15 +188,27 @@ export default function Page() {
                       error={errors.number}
                       // hintText="This is a hint text to help user."
                   />
-            </div>
 
+                  
+            </div>
+          
+            <InputField 
+                      placeholder="Apartment/Suite/Unit"
+                      label="complement"
+                      primary={'dark'}
+                      titulo="Additional information"
+                      sizes={'sm'}
+                      {...register('complement')}                    
+                      error={errors.complement}
+                      // hintText="This is a hint text to help user."
+                  />          
   
 
            <ButtonDesignSystem label="Continue" className="w-full !border-none !outline-none rounded-[8px]" normal={'lg'} buttonType={"primary"} />       
       </form>
 
       <div className='items-center justify-between text-[#84888E] w-full pt-10 px-8 flex lg:hidden'>
-            <a href='/termos_de_usp.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Termos e Condições</a>
+            <a href='/termos_de_uso.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Termos e Condições</a>
             <a href='/politica_de_privacidade.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Política de Privacidade</a>
 
        </div>                       

@@ -1,14 +1,15 @@
 'use client';
 import React, { useEffect } from 'react'
 import useEmblaCarousel from "embla-carousel-react";
-import maradona from './../../../../../public/images/cards-athletes/card-maradona.webp'
-import camara from './../../../../../public/images/cards-athletes/card-camara.webp'
-import ferreira from './../../../../../public/images/cards-athletes/card-ferreira.webp'
-import guido from './../../../../../public/images/cards-athletes/card-guido.webp'
-import hulk from './../../../../../public/images/cards-athletes/card-hulk.webp'
-import moser from './../../../../../public/images/cards-athletes/card-moser.webp'
-import santos from './../../../../../public/images/cards-athletes/card-santos.webp'
-import sobral from './../../../../../public/images/cards-athletes/card-sobral.webp'
+import card1 from './../../../../../public/images/cards-athletes/Frame-34886.webp'
+import card2 from './../../../../../public/images/cards-athletes/Frame-34888.webp'
+import card3 from './../../../../../public/images/cards-athletes/Frame-34889.webp'
+import card4 from './../../../../../public/images/cards-athletes/Frame-34890.webp'
+import card5 from './../../../../../public/images/cards-athletes/Frame-34891.webp'
+import card6 from './../../../../../public/images/cards-athletes/Frame-34892.webp'
+import card7 from './../../../../../public/images/cards-athletes/Frame-35027.webp'
+
+
 import Image from 'next/image';
 import AutoScroll from "embla-carousel-auto-scroll";
 
@@ -16,14 +17,13 @@ import AutoScroll from "embla-carousel-auto-scroll";
 const CarouselCardsSection = () => {
 
     const cards = [
-        maradona,
-        camara,
-        ferreira,
-        guido,
-        hulk,
-        moser,
-        santos,
-        sobral,
+        card1,
+        card2,
+        card3,
+        card4,
+        card5,
+        card6,
+        card7,
     ]
 
     const [emblaRef, emblaApi] = useEmblaCarousel({loop: true, align: 'center'}, [
@@ -50,10 +50,10 @@ const CarouselCardsSection = () => {
             </div>
         </section>
         <div className='pt-spacing-4xl lg:mt-[-50px] z-[9999] flex flex-col items-center justify-center gap-spacing-2xl'>
-            <h2 className='lg:w-[35%] w-[70%] text-center mx-auto text-primary-base-white font-bold tracking-display text-display-sm leading-display-sm lg:text-display-lg lg:leading-display-lg '>
-                Your <span className='bg-gradient-title'>favorite </span> athletes are here
+            <h2 className='w-full text-center mx-auto text-primary-base-white font-bold tracking-display text-display-sm leading-display-sm lg:text-display-lg lg:leading-display-lg '>
+                Your <span className='bg-gradient-title'>favorite </span> athletes <br/> are here
             </h2>
-            <p className='lg:w-[30%] w-[80%] text-primary-gray-200 font-thin lg:text-text-md lg:leading-text-md text-text-lg leading-text-xl text-center'>Collect the Cards of your favorite athletes and clubs and track their statistics.</p>
+            <p className='lg:w-[30%] xl:w-[30%] sm:w-[50%] w-[70%] text-primary-gray-200 font-thin lg:text-text-md lg:leading-text-md text-text-lg leading-text-xl text-center'>Collect the Cards of your favorite athletes and clubs and track their statistics.</p>
         </div>
         <div className='py-[55px] lg:py-[70px] px-spacing-4xl flex lg:flex-wrap max-w-[950px] w-full lg:justify-center mx-auto gap-[45px] lg:gap-0 flex-wrap'>
             <div className='flex relative flex-col gap-spacing-md lg:w-[250px] lg:h-[189px] lg:items-center lg:justify-center lg:pr-[30px] '>

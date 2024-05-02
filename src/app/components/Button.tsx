@@ -9,7 +9,7 @@ export const button = cva(
         variants: {
             buttonType: {
                 primary: 'bg-primary-brand-500 shadow-xs disabled:text-primary-gray-400 hover:bg-primary-brand-600 transition-colors focus:ring-brand focus:ring-4 disabled:border-[1px] disabled:border-primary-gray-200 disabled:bg-primary-gray-100 font-semibold text-primary-base-white',
-                secondaryGray: 'bg-primary-base-white shadow-xs font-semibold text-primary-gray-700 hover:bg-primary-gray-50 focus:ring-gray focus:ring-4 disabled:text-primary-gray-400 border-primary-gray-300 border-[1px]',
+                secondaryGray: 'bg-primary-base-white shadow-xs font-semibold text-primary-gray-700 transition-colors focus:ring-gray focus:ring-4 disabled:text-primary-gray-400 border-primary-gray-300 border-[1px]',
                 secondaryColor: 'bg-primary-brand-50 shadow-xs border-primary-brand-300 border-[1px] font-semibold transition-colors text-primary-brand-600 hover:text-primary-brand-700 hover:bg-primary-brand-100 disabled:bg-primary-base-white disabled:border-primary-gray-200 disabled:text-primary-gray-400 focus:ring-brand focus:ring-4 ',
                 tertiaryGray: '',
                 tertiaryColor: '',

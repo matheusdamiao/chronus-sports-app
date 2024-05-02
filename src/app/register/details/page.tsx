@@ -1,13 +1,14 @@
 'use client';
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useId } from "react";
+import React, { useEffect, useId, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import ReactSelect from "react-select";
+import AsyncSelect from 'react-select/async';
 import ButtonDesignSystem from "src/app/components/Button";
 import InputField from "src/app/components/InputField";
 import { useFormStore } from "src/app/store/formStore";
-import { maskBirthday, maskBrazilianPhoneNumber2, maskUSPhoneNumber, maskUSPhoneNumber2 } from "src/app/utils/maksFunctions";
+import { maskBirthday, maskBrazilianPhoneNumber2, maskCPF, maskUSPhoneNumber } from "src/app/utils/maksFunctions";
 
 
 type IFormInput = {
@@ -22,41 +23,22 @@ type IFormInput = {
   document: string
 }
 
-
-const genderOptions = [
-  { value: 'masculine', label: 'Masculine' },
-  { value: 'feminine', label: 'Feminine' },
- 
-]
-
 type OptionsType = {
   value: string,
   label: string
 }
 
-const sportsOptions = [
-  { value: 'basketball', label: 'Basketball' },
-  { value: 'soccer', label: 'Soccer' },
-  { value: 'volleyball', label: 'Volleyball' },
-]
 
-
-const heartTeamsOptions = [
-  { value: 'corinthians', label: 'Corinthians' },
-  { value: 'são paulo', label: 'São Paulo' },
-  { value: 'fluminense', label: 'Fluminense' },
-  { value: 'flamengo', label: 'Flamengo' },
-]
 
 export default function Page() {
-
+  const [teams, setTeams] = useState([]);
 
   const router = useRouter();
   const {formData: storeFormData, setDetails} = useFormStore();
 
 
   const { register, handleSubmit, control, setValue, watch, formState: {errors}}  = useForm<IFormInput>({mode: 'all', defaultValues: {
-    favoriteSport: {value: storeFormData.favoriteSport.value, label: storeFormData.favoriteSport.label },
+    favoriteSport: storeFormData.favoriteSport,
     name: storeFormData.name,
     birthday: storeFormData.birthday,
     document: storeFormData.document,
@@ -92,6 +74,9 @@ export default function Page() {
         setValue('phone', phoneMasked);
       }
 
+    
+    
+
 
   },[birthday, phone, phoneType, setValue])
   
@@ -115,6 +100,52 @@ export default function Page() {
   }
 
 
+  const mapResponseToValuesAndLabels = (data: any) => ({
+    value: data.title,
+    label: data.title,
+  });
+
+
+  const mapResponseToValuesAndLabelsTeams = (data: any) => ({
+    value: data.name,
+    label: data.name,
+  });
+
+  const genderOptions = async(inputValue: string) => {
+    const data = await fetch('https://domains.api.core.chronus-sports.biss.com.br/api/v1/gender')
+      .then((response) => response.json())
+      .then((response) => response.data.response.map(mapResponseToValuesAndLabels))
+      .then((final) =>
+        final.filter((i: any) => i.label.toLowerCase().includes(inputValue.toLowerCase()))
+      );
+    return data;
+    }
+    
+
+    const teamsOptions = async(inputValue: string) => {
+      const data = await fetch('https://domains.api.core.chronus-sports.biss.com.br/api/v1/Team')
+        .then((response) => response.json())
+        .then((response) => response.data.response.map(mapResponseToValuesAndLabelsTeams))
+        .then((final) =>
+          final.filter((i: any) => i.label.toLowerCase().includes(inputValue.toLowerCase()))
+        );
+        console.log(data);
+      return data;
+      }  
+  
+
+      const sportsOptions = async(inputValue: string) => {
+        const data = await fetch('https://domains.api.core.chronus-sports.biss.com.br/api/v1/modality')
+          .then((response) => response.json())
+          .then((response) => response.data.response.map(mapResponseToValuesAndLabels))
+          .then((final) =>
+            final.filter((i: any) => i.label.toLowerCase().includes(inputValue.toLowerCase()))
+          );
+          console.log(data);
+        return data;
+        }  
+
+      
 
 
   return (
@@ -137,8 +168,7 @@ export default function Page() {
             <h2 className="text-primary-base-white lg:text-display-sm font-semibold lg:leading-display-sm text-display-xs leading-display-xs text-center ">Enter your details</h2>
       </div>
 
-
-      <form className="pt-spacing-4xl flex flex-col px-4 gap-spacing-2xl w-full "  onSubmit={handleSubmit(onSubmit)}>
+      <form className="pt-spacing-4xl flex flex-col px-4 gap-spacing-2xl w-full max-w-[360px] "  onSubmit={handleSubmit(onSubmit)}>
 
           <InputField 
               // className="bg-transparent border-[#292E38]"
@@ -204,7 +234,7 @@ export default function Page() {
                   required: 'Need to choose one option'
                 }}            
                 render={({ field: { onChange, onBlur, value, ref } }) => (
-                  <ReactSelect
+                  <AsyncSelect
                     instanceId={id3}
                     onChange={onChange}
                     styles={{
@@ -226,6 +256,10 @@ export default function Page() {
                         ...baseStyles,
                         minHeight: '40px'
                       }),
+                      input: (baseStyles, state) =>({
+                        ...baseStyles,
+                        color: '#FFFF'
+                      }),
                         menuList: (baseStyles, state) =>({
                           ...baseStyles,
                           border: '1px solid #D0D5DD',
@@ -243,9 +277,11 @@ export default function Page() {
                           fontWeight: state.isSelected ? '600' : '400'
                       })
                     }}
-                    value={value}
                     onBlur={onBlur}
-                    options={genderOptions}
+                    cacheOptions
+                    defaultOptions
+                    defaultValue={value}
+                    loadOptions={genderOptions}
                   />
                 )}
                 />
@@ -303,7 +339,7 @@ export default function Page() {
                   required: 'Need to choose one option'
                 }}            
                 render={({ field: { onChange, onBlur, value, ref } }) => (
-                  <ReactSelect
+                  <AsyncSelect
                     instanceId={id2}
                     onChange={onChange}
                     styles={{
@@ -320,6 +356,10 @@ export default function Page() {
 
                         boxShadow: state.isFocused ? '0px 1px 2px 0px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px rgba(45, 109, 233, 0.14)' : '0' ,
                       }),
+                      input: (baseStyles, state) =>({
+                        ...baseStyles,
+                        color: '#FFFF'
+                      }),
                       valueContainer: (baseStyles, state) => ({
                         ...baseStyles,
                         minHeight: '40px'
@@ -335,15 +375,15 @@ export default function Page() {
                         }),
                        option: (baseStyles, state) => ({
                         ...baseStyles,
-                          
                           backgroundColor: state.isFocused ? '#85A5EB' : 'transparent',
                           color: state.isSelected ? '#101828' : '#475467',
                           fontWeight: state.isSelected ? '600' : '400'
                       })
                     }}
-                    value={value}
-                    onBlur={onBlur}
-                    options={sportsOptions}
+                    cacheOptions
+                    defaultOptions
+                    defaultValue={value}
+                    loadOptions={sportsOptions}
                   />
                 )}
                 />
@@ -360,7 +400,7 @@ export default function Page() {
                   required: 'Need to choose one option'
                 }}            
                 render={({ field: { onChange, onBlur, value, ref } }) => (
-                  <ReactSelect
+                  <AsyncSelect
                     instanceId={id}
                     onChange={onChange}
                     styles={{
@@ -381,6 +421,10 @@ export default function Page() {
                         ...baseStyles,
                         minHeight: '40px'
                       }),
+                      input: (baseStyles, state) =>({
+                        ...baseStyles,
+                        color: '#FFFF'
+                      }),
                         menuList: (baseStyles, state) =>({
                           ...baseStyles,
                           border: '1px solid #D0D5DD',
@@ -397,9 +441,10 @@ export default function Page() {
                           fontWeight: state.isSelected ? '600' : '400'
                       })
                     }}
-                    value={value}
-                    onBlur={onBlur}
-                    options={heartTeamsOptions}
+                    cacheOptions
+                    defaultOptions
+                    defaultValue={value}
+                    loadOptions={teamsOptions}
                   />
                 )}
                 />
@@ -410,7 +455,7 @@ export default function Page() {
       </form>
 
       <div className='items-center justify-between text-[#84888E] w-full pt-10 px-8 flex lg:hidden'>
-            <a href='/termos_de_usp.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Termos e Condições</a>
+            <a href='/termos_de_uso.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Termos e Condições</a>
             <a href='/politica_de_privacidade.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Política de Privacidade</a>
 
        </div>          

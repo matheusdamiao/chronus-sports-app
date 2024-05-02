@@ -1,16 +1,16 @@
 import Image from 'next/image'
 import React from 'react'
-import glasses from './../../../../../public/images/glasses-section.webp'
+import glasses from './../../../../../public/images/glasses-sections-up.webp'
 import ButtonDesignSystem from '../../Button'
 import chevronPurple from './../../../../../public/icons/chevronPurple.svg'
 import whiteMask from './../../../../../public/icons/whiteMask.svg'
 
 const MultiSensorySection = () => {
   return (
-    <div className='relative flex flex-col max-w-7xl w-full mx-auto lg:py-24 p-0'>
+    <div className='relative flex flex-col max-w-7xl w-full mx-auto lg:pb-24 p-0'>
         <div className='relative mx-auto'>  
             <span className='bg-glasses-blured bottom-0 '></span>
-            <Image src={glasses} alt=''  className=' relative px-4' />
+            <Image src={glasses} alt='' width={870}  className=' relative px-4' />
         </div>
         <div className='pt-spacing-4xl lg:pt-spacing-7xl z-[9999] flex flex-col items-center justify-center gap-spacing-2xl'>
             <h2 className='lg:w-[50%] w-[70%] text-center mx-auto text-primary-base-white font-bold tracking-display text-display-sm leading-display-sm lg:text-display-lg lg:leading-display-lg '>

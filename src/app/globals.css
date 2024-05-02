@@ -111,10 +111,19 @@
     background: linear-gradient(92deg, rgba(71, 205, 137, 0.90) 19.81%, rgba(1, 3, 23, 0.90) 100%);
 }
 
+
+.bg-gradient-button-green:hover {
+    background: linear-gradient(92deg, rgba(35, 104, 69, 0.9) 19.81%, rgba(1, 3, 23, 0.90) 100%);
+}
+
+
 .bg-gradient-button-blue {
     background: linear-gradient(92deg, #2CE 0%, #010317 100%);
 }
 
+.bg-gradient-button-blue:hover {
+    background: linear-gradient(92deg, rgb(6, 66, 105) 0%, #010317 100%);
+}
 
 
 /* background gradient from carousel cards section */
@@ -173,7 +182,7 @@
     margin-left: calc(var(--slide-spacing) * -1);
     height: 600px;
     align-items: center;
-    gap: 100px;
+    gap: 32px;
 }
 
 .embla__slide {
@@ -192,7 +201,7 @@
 }
 
 .embla__slide:last-child {
-    margin-right: 100px;
+    margin-right: 32px;
 }
 
 

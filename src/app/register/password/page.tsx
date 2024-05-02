@@ -7,7 +7,7 @@ import ButtonDesignSystem from "src/app/components/Button";
 import InputField from "src/app/components/InputField";
 import { useFormStore } from "src/app/store/formStore";
 import eyesCloed from './../../../../public/icons/eyesClosed.svg'
-
+import spinner from './../../../../public/icons/spinner.svg'
 
 
 type RegisterUserType = {
@@ -44,17 +44,23 @@ type IFormInput = {
   pagePolicies: boolean;
 }
 
+type ErrorType = {
+  innerError: boolean,
+  message: string,
+  detail: string
+}
 
 export default function Page() {
   const formData = useFormStore((state)=> state);
 
-  // console.log(formData);
+  console.log(formData);
 
-
+  const [isLoading, setIsLoading] = useState(false);
   const [hasValidLength, setHasValidLength] = useState(false); 
   const [hasCapitalLetter, setHasCapitalLetter] = useState(false);  
   const [hasSpecialCharacter, setHasSpecialCharacter] = useState(false);  
   const [blockError, setBlockError] = useState(false);
+  const [blockRequirements, setBlockRequirements] = useState(false);
 
   function checkCapitalLetter(str: string) {
     return Array.from(str).some(char => char !== char.toLowerCase());
@@ -73,7 +79,7 @@ export default function Page() {
   const router = useRouter()
 
 
-  const { register, handleSubmit, setError, watch, formState: {errors} } = useForm<IFormInput>({mode: "all"})
+  const { register, handleSubmit, setError, watch, formState: {errors} } = useForm<IFormInput>({mode: "onChange"})
  
 
   const password = watch('password');
@@ -99,7 +105,7 @@ export default function Page() {
       setHasSpecialCharacter(true);
     }
 
-    if(!password && !checkSpecialCharacter(password)){
+    if(password && !checkSpecialCharacter(password)){
       setHasSpecialCharacter(false);  
     }
 
@@ -107,24 +113,40 @@ export default function Page() {
       setBlockError(false);
     }
 
-    if(password && !checkCapitalLetter(password) || !checkSpecialCharacter(password) || !checkValidLength(password)){
-      setBlockError(true);
-    }
+    // if(password && !checkCapitalLetter(password) || !checkSpecialCharacter(password) || !checkValidLength(password)){
+    //   setBlockError(true);
+    // }
     
   
   }, [password])
 
 
+React.useEffect(()=>{
+  if(password){
+    setBlockRequirements(true);
+  } else{
+    setBlockRequirements(false)
+  }
+
+},[password])
+
+
 
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    setIsLoading(true);
 
     if(password !== '' && !hasCapitalLetter || !hasSpecialCharacter || !hasValidLength ){
+      setIsLoading(false);
+      setError('password', {
+        message: 'Password is missing one of the requiremnts'
+      })
       return setBlockError(true);
     }
 
 
     if(data.password !== data.confirmPassword){
+      setIsLoading(false);
       return setError('confirmPassword', {
         message: 'Senha não confere. '
       })
@@ -150,18 +172,18 @@ export default function Page() {
       address: {
         street: formData.formData.Street,
         number: formData.formData.number,
-        complement: formData.formData.number,
+        complement: formData.formData.complement,
         neighborhood: formData.formData.District,
         city: formData.formData.Estate,
         state: formData.formData.Estate,
         country: formData.formData.phoneType,
         zipCode: formData.formData.CEP
       },
-      favoriteClub: formData.formData.favoriteSport.value,
+      favoriteClub: formData.formData.heartTeam.value,
       favoriteSport: formData.formData.favoriteSport.value,
-      password: formData.formData.password,
-      acceptTermsUse: formData.formData.acceptTermsUse,
-      acceptPrivacyPolicy: formData.formData.acceptPrivacyPolicy,
+      password: data.password,
+      acceptTermsUse: data.termsOfUse,
+      acceptPrivacyPolicy: data.pagePolicies,
     }
 
     try {
@@ -175,23 +197,29 @@ export default function Page() {
       })
       
       const data = await registerUser.json();
+      console.log(data);
 
       if (data.statusCode === 400){
+        setIsLoading(false);
+        let customError = data.error as ErrorType;
+        alert(`Erro no cadastro: ${customError.detail}`)
         setError('password', {
           message: 'Algo de errado ocorreu. Tente novamente'
         })
       } 
 
       if(data.statusCode === 201){
+        setIsLoading(false);
         console.log('deu certo!', data);
         router.push('/confirm')
 
       }
 
-      // console.log('veio algo', data);
+      console.log('veio algo', data);
       
     } catch (error) {
       console.log('deu erro', error);
+      setIsLoading(false);
       setError('password', {
         message: "Algo de errado ocorreu. Tente novamente"
       })
@@ -235,20 +263,20 @@ export default function Page() {
               inputType="password"
               sizes={'sm'}
               {...register('password', {
-              required: true,
-              minLength: {
-                value: 8,
-                message: ''
-              },
-              maxLength: {
-                value: 20,
-                message: ''              }
+              // required: true,
+              // minLength: {
+              //   value: 8,
+              //   message: ''
+              // },
+              // maxLength: {
+              //   value: 20,
+              //   message: ''              }
               } )}           
               rightIcon={<Image src={eyesCloed} alt='' width={25} height={25} />}
               error={errors.password}
           />
           {/* {blockError ? <small className="text-primary-error-500">Atenção aos requisitios para sua senha</small> : ''} */}
-          <div className={`${!blockError ? 'bg-primary-gray-800': 'bg-primary-error-800'} h-[120px] w-full flex flex-col px-spacing-xl rounded-[6px] `}>
+          <div className={`${blockRequirements ? 'flex' : 'hidden'} ${!blockError ? 'bg-primary-gray-800': 'bg-primary-error-800'} h-[120px] w-full flex-col px-spacing-xl rounded-[6px] `}>
             <div className="flex gap-[10px] pb-spacing-md pt-spacing-xl items-center">
               {hasValidLength ?
               <span className="border-primary-brand-500 bg-primary-brand-500 border-[2px] rounded-[4px] w-[16px] h-[16px] ">
@@ -331,12 +359,12 @@ export default function Page() {
             {errors.pagePolicies && <small className="text-primary-error-500">{errors.pagePolicies.message}</small>}
           </div>  
 
-           <ButtonDesignSystem type="submit" label="Finalize" className="w-full !border-none !outline-none rounded-[8px]" normal={'lg'} buttonType={"primary"} />       
+           <ButtonDesignSystem type="submit" label="Finalize" rightIcon={isLoading && <Image className="animate-spin" width={20} height={20} src={spinner} alt="Loading icon"/>} className="w-full !border-none !outline-none rounded-[8px]" normal={'lg'} buttonType={"primary"} />       
       </form>
 
 
-      <div className='items-center justify-between text-[#84888E] w-full pt-10 px-8 flex'>
-            <a href='/termos_de_usp.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Termos e Condições</a>
+      <div className='lg:hidden flex items-center justify-between text-[#84888E] w-full pt-10 px-8'>
+            <a href='/termos_de_uso.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Termos e Condições</a>
             <a href='/politica_de_privacidade.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Política de Privacidade</a>
 
        </div>               

@@ -21,6 +21,7 @@ export type FormData = {
   District: string;
   Street: string;
   number: string;
+  complement: string;
   password: string;
   acceptTermsUse: boolean;
   acceptPrivacyPolicy: boolean;
@@ -48,6 +49,7 @@ export const useFormStore = create<FormStore>()((set) => ({
         District: '',
         Street: '',
         number: '',
+        complement: '',
         password: '',
         acceptTermsUse: false,
         acceptPrivacyPolicy: false,
