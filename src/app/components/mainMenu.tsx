@@ -30,6 +30,7 @@ const MainMenu = () => {
   let size = useWindowDimensions()
 
   const modalRef = useRef<HTMLDivElement>(null);
+  const btnModal = useRef<HTMLButtonElement>(null);
 
   const { register, handleSubmit, setError, setValue, formState: {errors}} = useForm<IFormInput>({mode: 'all'})
 
@@ -48,9 +49,8 @@ const MainMenu = () => {
 
 
       //  Fecha o modal quando clicado fora
-
       function handleClickOutside(event: MouseEvent) {
-        if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        if (modalRef.current && !modalRef.current.contains(event.target as Node) && !btnModal.current?.contains(event.target as Node)) {
          setIsLoginModalOpen(false);
         }
       }
@@ -83,7 +83,12 @@ const MainMenu = () => {
   }
 
   const handleLoginModal = () =>{
-    setIsLoginModalOpen(!isLoginModalOpen)
+    if(isLoginModalOpen === true){
+      setIsLoginModalOpen(false)
+    } else {
+      setIsLoginModalOpen(true);
+    }
+    // setIsLoginModalOpen(!isLoginModalOpen)
   }
 
 
@@ -175,7 +180,7 @@ const MainMenu = () => {
           </div>
           <div className='lg:flex hidden relative'>
            <Link href='/register/details'><ButtonDesignSystem label='Sign Up' className='text-primary-base-white border-none' normal={'lg'} buttonType={'linkColor'} /> </Link>
-            <ButtonDesignSystem label='Login' onClick={()=> handleLoginModal()} leftIcon={
+            <ButtonDesignSystem ref={btnModal} label='Login' onClick={()=> handleLoginModal()} leftIcon={
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                   <g clipPath="url(#clip0_2158_17040)">
                     <path d="M19.3994 7C20.3039 8.50118 20.6903 10.2578 20.4994 12V13C20.4982 14.0529 20.7741 15.0875 21.2994 16" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
@@ -261,6 +266,7 @@ const MainMenu = () => {
               }
             </AnimatePresence>
           </div>
+          {/*///////////// menu mobile toggle //////////////////*/}
           <div onClick={()=> handleMenuMobile()} className={`${isMobileMenuOpen ? 'bg-[#31344C]': 'bg-primary-brand-500'} transition-colors  lg:hidden w-[44px] h-[44px] !flex-shrink-0 rounded-full  flex items-center justify-center gap-1 flex-col`}>
               <span className={`${isMobileMenuOpen ? 'translate-y-[3px] rotate-45 !w-[20px]' : ''} transition-transform w-[14px] h-[2px] bg-primary-base-white block rounded-lg `}> </span>
               <span className={`${isMobileMenuOpen ? 'hidden' : ''} w-[14px] h-[2px] bg-primary-base-white block rounded-lg !flex-shrink-0`}> </span>
@@ -378,7 +384,7 @@ const MainMenu = () => {
 
             <small className='text-[#84888E] flex items-center justify-center w-full text-text-sm text-center gap-1 pt-spacing-4xl'>  Não tem uma conta? <Link href='/register/details' className='text-primary-base-white'> Cadastre-se</Link></small>  
             <div className='flex items-center justify-center text-[#84888E] flex-wrap gap-2 pt-spacing-8xl pb-4'>
-                <a href='/termos_de_usp.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Termos e Condições</a>
+                <a href='/termos_de_uso.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Termos e Condições</a>
                 -
                 <a href='/politica_de_privacidade.pdf' target='_blank' className='text-[13px] underline text-nowrap'> Política de Privacidade</a>
             </div>       
