@@ -1,5 +1,7 @@
 import React from 'react'
 import categories from './../../../../../public/images/sports-categories.webp'
+import categories2 from './../../../../../public/images/categories-ports-upgrade.webp'
+
 import Image from 'next/image'
 
 const SportsCategoriesSection = () => {
@@ -15,7 +17,7 @@ const SportsCategoriesSection = () => {
             </div>
             <div className='flex pt-[36px] lg:justify-center  '>
                 <div className='relative lg:w-[930px] lg:h-[147px] w-[546px] h-[90px] mx-auto'>
-                   <Image src={categories} alt=''   className='object-cover w-full' fill  />
+                   <Image src={categories2} alt=''   className='object-cover w-full' fill  />
                 </div>
             </div>   
          </div>

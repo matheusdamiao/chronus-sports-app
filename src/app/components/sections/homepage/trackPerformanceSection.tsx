@@ -21,7 +21,7 @@ const TrackPerformanceSection = () => {
 
         </div>   
         <Image src={bg} alt='' className='z-[88] absolute top-[170px] right-[150px]' />
-        <div className='py-[55px] lg:py-[70px] px-spacing-4xl flex lg:flex-wrap max-w-[950px] w-full lg:justify-center mx-auto gap-[45px] lg:gap-0 flex-wrap'>
+        <div className='pt-[55px] pb-0 lg:py-[70px] px-spacing-4xl flex lg:flex-wrap max-w-[950px] w-full lg:justify-center mx-auto gap-[45px] lg:gap-0 flex-wrap'>
             <div className='flex relative flex-col gap-spacing-md lg:w-[250px] lg:h-[189px] lg:items-center lg:justify-center lg:pr-[30px] '>
                 <h4 className='text-primary-base-white font-bold text-text-md leading-text-md'>Immersive mixed Reality</h4>
                 <p className='text-primary-gray-200 text-text-md leading-text-md font-thin lg:text-center lg:w-[80%] w-[90%]'>Technology for injury prevention and athlete protection.</p>
