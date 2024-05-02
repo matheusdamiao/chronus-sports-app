@@ -49,7 +49,7 @@ export default function Page() {
   if(cepData !== '' && cepRegex.test(cepData)){
     fetchCep();
   }
-
+  // eslint-disable-next-line
  },[cepData])
 
 
