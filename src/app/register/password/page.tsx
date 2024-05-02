@@ -139,7 +139,7 @@ React.useEffect(()=>{
     if(password !== '' && !hasCapitalLetter || !hasSpecialCharacter || !hasValidLength ){
       setIsLoading(false);
       setError('password', {
-        message: 'Senha fraca'
+        message: 'Password is missing one of the requiremnts'
       })
       return setBlockError(true);
     }
@@ -172,7 +172,7 @@ React.useEffect(()=>{
       address: {
         street: formData.formData.Street,
         number: formData.formData.number,
-        complement: formData.formData.number,
+        complement: formData.formData.complement,
         neighborhood: formData.formData.District,
         city: formData.formData.Estate,
         state: formData.formData.Estate,
@@ -181,9 +181,9 @@ React.useEffect(()=>{
       },
       favoriteClub: formData.formData.heartTeam.value,
       favoriteSport: formData.formData.favoriteSport.value,
-      password: formData.formData.password,
-      acceptTermsUse: formData.formData.acceptTermsUse,
-      acceptPrivacyPolicy: formData.formData.acceptPrivacyPolicy,
+      password: data.password,
+      acceptTermsUse: data.termsOfUse,
+      acceptPrivacyPolicy: data.pagePolicies,
     }
 
     try {
