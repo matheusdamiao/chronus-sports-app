@@ -211,7 +211,7 @@ React.useEffect(()=>{
       if(data.statusCode === 201){
         setIsLoading(false);
         console.log('deu certo!', data);
-        // router.push('/confirm')
+        router.push('/confirm')
 
       }
 
