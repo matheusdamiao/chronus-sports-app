@@ -83,3 +83,13 @@ export function maskBirthday(value: string): string {
 
   return formattedValue;
 }
+
+
+
+
+export function maskCPF(cpf: string): string {
+  cpf = cpf.replace(/\D/g, "");    
+  cpf = cpf.replace(/^(\d{3})/g, "$1.");
+  cpf = cpf.replace(/(\d{3})(\d{3})/g, "$1.$2-");        
+  return cpf;
+}
