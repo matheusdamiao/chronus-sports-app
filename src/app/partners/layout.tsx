@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import MainMenu from '../components/mainMenu';
 
 export const metadata = {
     title: "Login - Chronus Sports",
@@ -10,8 +11,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+    
+      <div className='bg-[#010317]  '>{children}</div>
+   
   );
 }

@@ -162,7 +162,7 @@ const MainMenu = () => {
           
             <ul className='items-center gap-spacing-4xl hidden lg:flex'>
               <li>
-                <Link href='#' className='text-primary-base-white font-medium'> Home</Link>
+                <Link href='/' className='text-primary-base-white font-medium'> Home</Link>
               </li>
               <li>
                 <Link href='#'  className='text-primary-base-white font-medium'> Clients</Link>
@@ -171,7 +171,7 @@ const MainMenu = () => {
                 <Link href='#'  className='text-primary-base-white font-medium'>Creators</Link>
               </li>
               <li>
-                <Link href='#'  className='text-primary-base-white font-medium'>Partners</Link>
+                <Link href='/partners'  className='text-primary-base-white font-medium'>Partners</Link>
               </li>
               <li>
                 <Link href='#'  className='text-primary-base-white font-medium'> Pricing</Link>
@@ -277,7 +277,7 @@ const MainMenu = () => {
         <div className='absolute top-0 translate-x-[0px] duration-700 transition-all bg-primary-gray-900 w-full h-[530px]'>
           <ul className='pt-[95px] flex flex-col gap-2'>
             <li className='py-spacing-lg px-spacing-xl w-full'>
-              <Link href='#' className='text-primary-base-white font-semibold '>Home</Link>
+              <Link href='/' className='text-primary-base-white font-semibold '>Home</Link>
             </li>
             <li className='py-spacing-lg px-spacing-xl w-full'>
               <Link href='#' className='text-primary-base-white font-semibold'>Clients</Link>
@@ -286,7 +286,7 @@ const MainMenu = () => {
               <Link href='#' className='text-primary-base-white font-semibold' >Creators</Link>
             </li>
             <li className='py-spacing-lg px-spacing-xl w-full'>
-              <Link href='#' className='text-primary-base-white font-semibold'>Partners</Link>
+              <Link href='/partners' className='text-primary-base-white font-semibold'>Partners</Link>
             </li>
             <li className='py-spacing-lg px-spacing-xl w-full'>
               <Link href='#' className='text-primary-base-white font-semibold'>Pricing</Link>

@@ -4,6 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* ///////////////// Home page ////////////////////// */
+
 /* background ellipse for hero section in home page  */
 .ellipse {
     border-radius: 1177px;
@@ -236,6 +239,8 @@
 
 /*////////////// END OF CARDS CAROUSEL CSS /////////////////////*/
 
+
+
 /* text gradient for carousel section */
 
 .bg-gradient-title {
@@ -322,7 +327,7 @@
 
 
 
-/* text gradient title from multiSensory Section */
+/* text gradient title from multiSensory Section (home page) */
 
 
 .text-glasses-gradient {
@@ -361,4 +366,170 @@
 
 .bg-button-purple {
     background: linear-gradient(92deg, #7A5AF8 0%, #010317 100%);
+}
+
+/* ////////////////////////// END OF HOME PAGE ///////////////////////////  */
+
+
+
+
+/*  */
+
+
+
+/*  */
+
+
+
+/*  */
+
+
+
+/*  */
+
+
+
+/* /////////////////// Partners Page /////////////////////////////////// */
+
+
+/* Ellipse for partners page inside hero section */
+
+.ellipse-partner-desktop {
+    flex: 0;
+    flex-shrink: 0;
+    margin: 0 auto;
+    border-radius: 1177px;
+    opacity: 0.6;
+    background: #17B26A;
+    filter: blur(150px);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -830px;
+    width: 540px;
+    height: 1177px;
+}
+
+
+.ellipse-partner-mobile {
+    width: 238px;
+    height: 503px;
+    flex-shrink: 0;
+    border-radius: 503px;
+    opacity: 0.6;
+    background: #17B26A;
+    filter: blur(64.12639617919922px);
+    left: 0;
+    right: 0;
+    top: -181px;
+    position: absolute;
+    margin: 0 auto;
+}
+
+.ellipse-partner-bg-overlay {
+    /* width: 1440px; */
+    width: 100%;
+    height: 600px;
+    flex-shrink: 0;
+    background: radial-gradient(70.49% 70.49% at 50% 29.51%, rgba(1, 3, 23, 0.00) 0%, #010317 99.26%);
+    left: 0;
+    right: 0;
+    position: absolute;
+    margin: 0 auto;
+}
+
+
+
+/* /* Ellipses for carousel inside parnters page/  */
+
+
+.ellipse-carousel-1 {
+    border-radius: 353.814px;
+    opacity: 0.4;
+    background: #748FC3;
+    filter: blur(195.6781463623047px);
+    width: 867px;
+    height: 565.516px;
+    flex-shrink: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
+}
+
+
+.ellipse-carousel-2 {
+    width: 867px;
+    height: 567.543px;
+    flex-shrink: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    border-radius: 353.814px;
+    opacity: 0.4;
+    background: #8F934B;
+    filter: blur(195.6781463623047px);
+}
+
+
+.ellipse-carousel-3 {
+    width: 867px;
+    height: 571.102px;
+    flex-shrink: 0;
+    border-radius: 353.814px;
+    opacity: 0.4;
+    background: #B09146;
+    filter: blur(195.6781463623047px);
+    left: 0;
+    right: 0;
+    position: absolute;
+}
+
+@media screen and (max-width: 1000px) {
+
+    .ellipse-carousel-1 {
+        width: 329.91px;
+        height: 215.19px;
+        border-radius: 134.632px;
+        filter: blur(74.45843505859375px);
+    }
+
+    .ellipse-carousel-2 {
+        width: 329.91px;
+        height: 215.19px;
+        border-radius: 134.632px;
+        filter: blur(74.45843505859375px);
+    }
+
+    .ellipse-carousel-3 {
+        width: 329.91px;
+        height: 215.19px;
+        border-radius: 134.632px;
+        filter: blur(74.45843505859375px);
+    }
+}
+
+
+/* ///////// toggle button pricing partner section /////// */
+
+
+.toggle-wrapper {
+    width: 44px;
+    height: 24px;
+    padding: 2px;
+    border-radius: 12px;
+    background: var(--Gradients-Assinaturas-ALL-STAR, linear-gradient(272deg, #F92C5D -0.63%, #FB37AD 99.75%));
+}
+
+.toggle-subscription {
+    background: var(--Gradients-Assinaturas-MVP, linear-gradient(272deg, #30D89B -0.63%, #24F277 99.75%));
+}
+
+
+.pricing-cards-bg {
+    fill: linear-gradient(181deg, #080C2F -13.01%, #010317 147.4%, #010317 147.4%);
+    box-shadow: 0px 1.298px 1.298px 0px rgba(45, 109, 233, 0.50) inset;
+    border-radius: 20px;
 }
