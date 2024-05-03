@@ -36,6 +36,7 @@ const CarouselPartner = () => {
         }
         }
 
+   // eslint-disable-next-line
   },[size])
 
 //   const handleCarouselImages = (id: number) => {
@@ -128,7 +129,7 @@ const handleCarouselImages = (id: number | null = null) => {
  useEffect(() => {
 
     handleCarouselImages();
-   
+ // eslint-disable-next-line  
  }, []);
 
 
