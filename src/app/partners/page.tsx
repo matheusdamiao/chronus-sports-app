@@ -1,6 +1,5 @@
 import React from "react";
 import MainMenu from "../components/mainMenu";
-import HeroSectionPartner from "../components/sections/partnerPage/heroSectionPartner";
 import Image from "next/image";
 import shirt from './../../../public/icons/shirt-1.svg'
 import visualize from './../../../public/icons/visualize.svg'
@@ -11,9 +10,7 @@ import CarouselPartner from "../components/sections/partnerPage/carouselPartner"
 import PricingPartnerSection from "../components/sections/partnerPage/pricingPartnerSection";
 import CtaSection from "../components/sections/homepage/ctaSection";
 import FooterSection from "../components/sections/homepage/footerSection";
-
-
-
+import HeroSectionPartner from "../components/sections/partnerPage/heroSectionPartner";
 
 
 export const metadata = {
@@ -59,12 +56,12 @@ export default function Page() {
           <p className="text-primary-base-white text-text-md leading-text-md">enriching community.</p>
         </div>
       </section>
-      <section className="pt-[100px]">
+      <section className="pt-[70px]">
         <PartnerSection/>
       </section>
       <CarouselPartner/>
       <PricingPartnerSection/>
-      <div className="mt-[100px] h-full">
+      <div className="lg:mt-[100px] lg:mb-[100px] h-full">
         <CtaSection/>
       </div>
       <FooterSection/>
