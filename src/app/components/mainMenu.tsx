@@ -32,7 +32,7 @@ const MainMenu = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   const btnModal = useRef<HTMLButtonElement>(null);
 
-  const { register, handleSubmit, setError, setValue, formState: {errors}} = useForm<IFormInput>({mode: 'all'})
+  const { register, handleSubmit, setError, setValue, formState: {errors}} = useForm<IFormInput>({mode: 'onSubmit'})
 
   useEffect(() => {
       if(size){
@@ -168,7 +168,7 @@ const MainMenu = () => {
                 <Link href='#'  className='text-primary-base-white font-medium'> Clients</Link>
               </li>
               <li>
-                <Link href='#'  className='text-primary-base-white font-medium'>Creators</Link>
+                <Link href='/creators'  className='text-primary-base-white font-medium'>Creators</Link>
               </li>
               <li>
                 <Link href='/partners'  className='text-primary-base-white font-medium'>Partners</Link>
@@ -283,7 +283,7 @@ const MainMenu = () => {
               <Link href='#' className='text-primary-base-white font-semibold'>Clients</Link>
             </li>
             <li className='py-spacing-lg px-spacing-xl w-full'>
-              <Link href='#' className='text-primary-base-white font-semibold' >Creators</Link>
+              <Link href='/creators' className='text-primary-base-white font-semibold' >Creators</Link>
             </li>
             <li className='py-spacing-lg px-spacing-xl w-full'>
               <Link href='/partners' className='text-primary-base-white font-semibold'>Partners</Link>
