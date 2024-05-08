@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 const SportsCategoriesSection = () => {
   return (
-    <div className=' flex flex-col max-w-7xl w-full mx-auto lg:py-24 p-0'>
+    <div className=' flex flex-col max-w-7xl w-full mx-auto lg:py-36 p-0'>
         <div className='relative'>
             <span className='bg-blue-blured'></span>
             <div className='pt-spacing-4xl lg:mt-[-50px] z-[9999] flex flex-col items-center justify-center gap-spacing-2xl'>

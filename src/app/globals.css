@@ -5,6 +5,8 @@
 @tailwind utilities;
 
 
+
+
 /* ///////////////// Home page ////////////////////// */
 
 /* background ellipse for hero section in home page  */
@@ -63,7 +65,18 @@
     }
 }
 
-
+.blur-desktop-bg-hero-home {
+    border-radius: 191.877px;
+    opacity: 0.2;
+    background: var(--Blue-300, #84CAFF);
+    filter: blur(173.8247528076172px);
+    height: 354px;
+    width: 947px;
+    flex-shrink: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
 
 
 
@@ -94,6 +107,18 @@
 }
 
 
+
+/* border gradient for logos sections (partners) */
+
+.border-gradient-1 {
+    border-width: 1px 0px 1px 0px;
+    border-style: solid;
+    border-image: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(236, 236, 236, 0) 0%, rgba(255, 255, 255, 0.16) 50%, rgba(255, 255, 255, 0) 100%) 1;
+}
+
+
+
+
 /* text gradient from functionalities section */
 
 .complete {
@@ -107,25 +132,35 @@
 
 /* gradient cards from functionalities section */
 .bg-gradient-card {
-    background: linear-gradient(181deg, rgba(255, 255, 255, 0.00) 10.25%, rgba(255, 255, 255, 0.15) 124.14%)
+    cursor: pointer;
+    background: linear-gradient(181deg, rgba(255, 255, 255, 0.00) 10.25%, rgba(255, 255, 255, 0.15) 124.14%);
 }
 
+
+
 .bg-gradient-button-green {
-    background: linear-gradient(92deg, rgba(71, 205, 137, 0.90) 19.81%, rgba(1, 3, 23, 0.90) 100%);
+    background: linear-gradient(92deg, rgba(60, 203, 127, 0.90) 19.81%, rgba(250, 196, 21, 0.90), rgba(250, 196, 21, 0.5), rgba(40, 203, 127, 0.5));
+    background-size: 200%;
+    background-position: left;
+    transition: background-position 0.7s;
 }
 
 
 .bg-gradient-button-green:hover {
-    background: linear-gradient(92deg, rgba(35, 104, 69, 0.9) 19.81%, rgba(1, 3, 23, 0.90) 100%);
+    background-position: right;
 }
 
 
-.bg-gradient-button-blue {
-    background: linear-gradient(92deg, #2CE 0%, #010317 100%);
+.bg-gradient-button-orange {
+    background: linear-gradient(92deg, rgb(250, 131, 68) 0%, rgb(246, 61, 104) 50%, rgb(150, 36, 14), rgba(250, 40, 75, 0.9));
+    background-size: 200%;
+    background-position: left;
+    transition: background-position 0.7s;
+
 }
 
-.bg-gradient-button-blue:hover {
-    background: linear-gradient(92deg, rgb(6, 66, 105) 0%, #010317 100%);
+.bg-gradient-button-orange:hover {
+    background-position: right;
 }
 
 
@@ -185,7 +220,7 @@
     margin-left: calc(var(--slide-spacing) * -1);
     height: 600px;
     align-items: center;
-    gap: 32px;
+    gap: 50px;
 }
 
 .embla__slide {
@@ -231,7 +266,7 @@
     }
 
     .embla__slide:last-child {
-        margin-right: 25px;
+        margin-right: 20px;
     }
 }
 
@@ -331,7 +366,7 @@
 
 
 .text-glasses-gradient {
-    background: linear-gradient(90deg, #2BEDC0 30.24%, #F8DF00 95.56%);
+    background: linear-gradient(90deg, #BDB4FE 30.24%, #6938EF 95.56%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -443,13 +478,26 @@
 /* /* Ellipses for carousel inside parnters page/  */
 
 
+.gradient-carrousel-title {
+    background: linear-gradient(90deg, #3CCB7F 17.02%, #FAC415 62.07%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.gradient-progress-bar {
+    border-radius: 4px;
+    background: linear-gradient(270deg, #3CCB7F 0%, #FAC415 100%);
+    box-shadow: 0px 0px 10px 7px rgba(69, 236, 147, 0.24), 0px 0px 8px 1px rgba(255, 255, 255, 0.24);
+}
+
 .ellipse-carousel-1 {
     border-radius: 353.814px;
-    opacity: 0.4;
-    background: #748FC3;
+    background: linear-gradient(180deg, #3CCB7F 13.06%, #010317 25.23%);
     filter: blur(195.6781463623047px);
     width: 867px;
-    height: 565.516px;
+    height: 443.441px;
     flex-shrink: 0;
     position: absolute;
     left: 0;
@@ -459,33 +507,6 @@
 }
 
 
-.ellipse-carousel-2 {
-    width: 867px;
-    height: 567.543px;
-    flex-shrink: 0;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    border-radius: 353.814px;
-    opacity: 0.4;
-    background: #8F934B;
-    filter: blur(195.6781463623047px);
-}
-
-
-.ellipse-carousel-3 {
-    width: 867px;
-    height: 571.102px;
-    flex-shrink: 0;
-    border-radius: 353.814px;
-    opacity: 0.4;
-    background: #B09146;
-    filter: blur(195.6781463623047px);
-    left: 0;
-    right: 0;
-    position: absolute;
-}
 
 @media screen and (max-width: 1000px) {
 
@@ -496,19 +517,6 @@
         filter: blur(74.45843505859375px);
     }
 
-    .ellipse-carousel-2 {
-        width: 329.91px;
-        height: 215.19px;
-        border-radius: 134.632px;
-        filter: blur(74.45843505859375px);
-    }
-
-    .ellipse-carousel-3 {
-        width: 329.91px;
-        height: 215.19px;
-        border-radius: 134.632px;
-        filter: blur(74.45843505859375px);
-    }
 }
 
 
@@ -532,4 +540,111 @@
     fill: linear-gradient(181deg, #080C2F -13.01%, #010317 147.4%, #010317 147.4%);
     box-shadow: 0px 1.298px 1.298px 0px rgba(45, 109, 233, 0.50) inset;
     border-radius: 20px;
+}
+
+
+
+
+
+
+/* /////////////////// Creators Page /////////////////////////////////// */
+
+
+/* Ellipse for creators page inside hero section */
+
+.ellipse-creators-desktop {
+    flex: 0;
+    flex-shrink: 0;
+    margin: 0 auto;
+    border-radius: 1177px;
+    opacity: 0.3;
+    background: #EF6820;
+    filter: blur(150px);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -830px;
+    width: 540px;
+    height: 1177px;
+}
+
+
+.ellipse-creators-mobile {
+    width: 238px;
+    height: 503px;
+    flex-shrink: 0;
+    border-radius: 503px;
+    opacity: 0.6;
+    background: #EF6820;
+    filter: blur(64.12639617919922px);
+    left: 0;
+    right: 0;
+    top: -181px;
+    position: absolute;
+    margin: 0 auto;
+}
+
+.ellipse-creators-bg-overlay {
+    /* width: 1440px; */
+    width: 100%;
+    height: 600px;
+    flex-shrink: 0;
+    background: radial-gradient(70.49% 70.49% at 50% 29.51%, rgba(1, 3, 23, 0.00) 0%, #010317 99.26%);
+    left: 0;
+    right: 0;
+    position: absolute;
+    margin: 0 auto;
+}
+
+
+.gradient-creators-title {
+    background: linear-gradient(90deg, #EF6820 25.59%, #7A5AF8 55.11%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* ellipse for carousel inside creators page */
+
+.ellipse-creators-carousel {
+    border-radius: 353.814px;
+    background: linear-gradient(180deg, rgba(239, 104, 32, 0.80) 13.06%, #010317 25.23%);
+    filter: blur(195.6781463623047px);
+    width: 867px;
+    height: 443.441px;
+    flex-shrink: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
+}
+
+@media screen and (max-width: 1000px) {
+
+    .ellipse-creators-carousel {
+        width: 329.91px;
+        height: 215.19px;
+        border-radius: 134.632px;
+        filter: blur(74.45843505859375px);
+    }
+
+}
+
+.gradient-progress-creators-bar {
+    border-radius: 4px;
+    background: linear-gradient(90deg, #FA7E1E 0%, #FB456F 60%);
+    box-shadow: 0px 0px 10px 7px rgba(239, 104, 32, 0.24), 0px 0px 8px 1px rgba(255, 255, 255, 0.24);
+}
+
+
+/* toggle pricing inside creators and partners page */
+
+
+.toggle-creators-pricing-wrapper {
+    width: 44px;
+    height: 24px;
+    padding: 2px;
+    border-radius: 12px;
 }

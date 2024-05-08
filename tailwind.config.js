@@ -11,6 +11,10 @@ module.exports = {
   theme: {
 
     extend:{
+      backgroundImage: {
+        'gradient-bg-pricing-cards': 'linear-gradient(202deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%)',
+      },
+      
       // Letter spacing for display texts
       letterSpacing: {
         'display': '-0.02em'

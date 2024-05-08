@@ -13,18 +13,18 @@ import Image from 'next/image'
 
 const PartnerSection = () => {
   return (
-    <div className='max-w-7xl w-full m-auto lg:pt-0 lg:pb-[100px] pt-[30px] pb-[100px] lg:px-0 px-4'>
+    <div className='max-w-7xl w-full m-auto lg:pt-[40px] lg:pb-[40px] pt-[30px] pb-[100px] border-t-[1px] border-b-[1px] border-gradient-1  lg:px-0 px-4'>
       <h3 className='text-text-md text-primary-gray-200 text-center pb-[50px] px-spacing-5xl lg:px-0 w-full mx-auto lg:w-full'>Join the world&apos;s best companies and be part of the future of Sports.</h3>
-      <div className='lg:flex hidden flex-wrap items-center justify-center max-w-[890px] mx-auto gap-[50px] mix-blend-luminosity opacity-40'>
+      <div className='lg:flex hidden flex-wrap items-center justify-center max-w-[890px] mx-auto gap-[40px] mix-blend-luminosity opacity-60'>
       {/* desktop order */}
-        <div className='flex flex-wrap items-center justify-center gap-[52px] lg:gap-[141px]'>
+        <div className='flex flex-wrap items-center justify-center gap-[52px] lg:gap-[80px]'>
           <Image src={abrafarma} alt='logo' width={73.74} height={45.34} className=''/>
           <Image src={fpf} alt='logo' width={48.557} height={48.557} className=' mx-auto '/>
           <Image src={cbf} alt='logo' width={35.58} height={48.83} className=' mx-auto'/>
           <Image src={sac} alt='logo' width={40.655} height={49.537} className=''/>
           <Image src={inovabra} alt='logo' width={95.415} height={38.802} className=' w-[95px]'/>
         </div>
-        <div className='flex flex-wrap items-center justify-center gap-[52px] lg:gap-[141px] '>
+        <div className='flex flex-wrap items-center justify-center gap-[52px] lg:gap-[80px] '>
           <Image src={paguemenos} alt='logo' width={84.123} height={23.047} className=''/>
           <Image src={websummit} alt='logo' className='' width={63.542} height={32.07}/>
           <Image src={f1} alt='logo' width={80.357} height={20.089} className=''/>

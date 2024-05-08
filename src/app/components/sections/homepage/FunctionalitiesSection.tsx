@@ -12,7 +12,7 @@ import image2 from './../../../../../public/images/desktop-image-upgrade-section
 
 const FunctionalitiesSection = () => {
   return (
-    <div className='py-[50px] flex flex-col text-primary-base-white'>
+    <div className='py-[50px] lg:pt-[100px] flex flex-col text-primary-base-white'>
         <div className='flex flex-col items-center justify-center px-[28px] gap-[21px] lg:max-w-[580px] mx-auto'>
             <h2 className='text-display-sm leading-display-sm tracking-display lg:text-display-lg font-bold lg:leading-display-lg text-center w-full'>The most <span className='complete'>complete</span><br /> sports platform</h2>
             <h3 className='tracking-wide text-text-lg lg:text-text-md text-primary-gray-200 text-center w-[90%] lg:w-full font-thin leading-text-lg'>Discover our key advantages and become a part of the most comprehensive and diverse sports platform in the world.</h3>
@@ -52,20 +52,20 @@ const FunctionalitiesSection = () => {
 
         {/* CARDS */}
         <div className='flex flex-wrap sm:justify-center gap-spacing-xl max-w-[950px] lg:mx-auto'>
-            <div className='lg:mx-0 mx-4 relative pl-[30px] lg:pl-[42px] pt-[38px] w-full sm:w-[359px] lg:w-[427px] overflow-hidden h-[479px] rounded-4xl border-[1px] border-solid border-[#1E1B3A] bg-gradient-card'>
+            <div className='hover:translate-y-[-5px] transition-transform lg:mx-0 mx-4 relative pl-[30px] lg:pl-[42px] pt-[38px] w-full sm:w-[359px] lg:w-[427px] overflow-hidden h-[479px] rounded-4xl border-[1px] border-solid border-[#1E1B3A] bg-gradient-card'>
                 <div className='flex flex-col gap-spacing-2xl'>
-                    <ButtonDesignSystem label='Become a Partner' className='w-[230px] bg-gradient-button-green !duration-700 hover:bg-gradient-button-green border-none outline-1 outline outline-offset-0 outline-primary-base-white/[0.05] !text-primary-base-white' leftIcon={<Image src={partnerHeart} alt='' width={20} height={20}/>}  rightIcon={<Image src={chevronGreen} alt=''  width={20} height={20} />} buttonType={'secondaryGray'} normal={'lg'}/>
+                    <ButtonDesignSystem label='Become a Partner' className='w-[230px] bg-gradient-button-green border-none outline-1 outline outline-offset-0 outline-primary-base-white/[0.05] !text-primary-base-white' leftIcon={<Image src={partnerHeart} alt='' width={20} height={20}/>}  rightIcon={<Image src={chevronGreen} alt=''  width={20} height={20} />} buttonType={'secondaryGray'} normal={'lg'}/>
                     <p className='w-[260px] text-text-md leading-text-md font-thin'>We are a partner you can trust. Join us and expand your career.</p>
                 </div>
                 <div className='absolute bottom-[-15px] lg:left-9 left-6'>
-                    <div className='relative w-[464.15px] h-[322.61px] '>
+                    <div className='relative w-[464.15px] h-[322.61px]'>
                         <Image src={image1} alt='' fill/>
                     </div>
                 </div>
             </div>
-            <div className='lg:mx-0 mx-4 relative pl-[30px] lg:pl-[42px] pt-[38px] w-full sm:w-[359px] lg:w-[427px] h-[479px] overflow-hidden rounded-4xl border-[1px] border-solid border-[#1E1B3A] bg-gradient-card'>
+            <div className='hover:translate-y-[-5px] transition-transform lg:mx-0 mx-4 relative pl-[30px] lg:pl-[42px] pt-[38px] w-full sm:w-[359px] lg:w-[427px] h-[479px] overflow-hidden rounded-4xl border-[1px] border-solid border-[#1E1B3A] bg-gradient-card'>
                 <div className='flex flex-col gap-spacing-2xl'>
-                    <ButtonDesignSystem label='Become a Creator' className='w-[230px] duration-700 delay-300 bg-gradient-button-blue hover:bg-gradient-button-blue transition-colors border-none outline-1 outline outline-offset-0 outline-primary-base-white/[0.05] !text-primary-base-white' leftIcon={<Image src={at} alt='' width={20} height={20}/>}  rightIcon={<Image src={chevronBlue} alt=''  width={20} height={20} />} buttonType={'secondaryGray'} normal={'lg'}/>
+                    <ButtonDesignSystem label='Become a Creator' className='w-[230px] bg-gradient-button-orange border-none outline-1 outline outline-offset-0 outline-primary-base-white/[0.05] !text-primary-base-white' leftIcon={<Image src={at} alt='' width={20} height={20}/>}  rightIcon={<Image src={chevronBlue} alt=''  width={20} height={20} />} buttonType={'secondaryGray'} normal={'lg'}/>
                     <p className='w-[260px] text-text-md leading-text-md font-thin'>Connect your fans to you and get paid fairly for it.</p>
                 </div>  
                 <div className='absolute bottom-[-15px] lg:left-9 left-6'>
