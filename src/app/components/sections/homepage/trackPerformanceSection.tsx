@@ -12,7 +12,7 @@ const TrackPerformanceSection = () => {
             <h2 className='lg:w-[50%] w-[70%] text-center mx-auto text-primary-base-white font-bold tracking-display text-display-sm leading-display-sm lg:text-display-lg lg:leading-display-lg '>
             Track Your Athlete&apos;s <span className='text-gradient-title'> Performance </span> 
             </h2>
-            <p className='lg:w-[50%] w-[80%] text-primary-gray-200 font-thin lg:text-text-md lg:leading-text-md text-text-lg leading-text-xl text-center'>Track your favorite athlete&apos;s performance with dynamic Cards and see their evolution each season.</p>
+            <p className='lg:w-[50%] w-[80%] text-primary-gray-200 font-thin lg:text-text-md lg:leading-text-md text-text-lg leading-text-xl text-center'>Track your favorite athlete&apos;s performance with dynamic <br className='hidden lg:block' /> Cards and see their evolution each season.</p>
         </div>
         <div className='flex lg:justify-center mt-[-30px] px-4 pt-10 '>
            

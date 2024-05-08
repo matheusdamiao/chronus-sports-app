@@ -11,7 +11,7 @@ const NewsLetterSection = () => {
                 <p className='text-text-md leading-text-md font-thin'>Stay updated on all the news, releases, and tips.</p>
             </div>
             <div className='flex !flex-0 gap-spacing-2xl'>
-                <InputField label='email' titulo='' placeholder='olivia@chronussports.com' className='bg-primary-gray-600' primary={'dark-with-bg'} sizes="md"/>
+                <InputField label='email' titulo='' placeholder='stevejobs@apple.com' className='bg-primary-gray-800' primary={'dark-with-bg'} sizes="md"/>
                 <ButtonDesignSystem label="Subscribe"  buttonType={"primary"} normal={"lg"} className="self-start border-none lg:mt-[8px] mt-[20px]" />
             </div>
         </div>
