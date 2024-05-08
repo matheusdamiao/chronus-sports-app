@@ -16,7 +16,7 @@ export const inputField = cva(
                 'dark': 'border-[#292E38] bg-transparent ', 
                 'small-dark': 'flex-grow-0 flex-0 !max-w-[100px] w-full border-[#292E38] bg-transparent',
                 'big-dark': 'border-[#292E38] bg-transparent',
-                'dark-with-bg': 'border-[#292E38] bg-[#182230] text-primary-gray-600'
+                'dark-with-bg': 'border-[#292E38] bg-primary-gray-800 text-primary-gray-600'
             },
             sizes:{
                sm:'py-spacing-md px-[12px]',
@@ -72,46 +72,46 @@ export interface InputProps
                     }
 
 
-                    const maskValues = (e: React.ChangeEvent<HTMLInputElement>) => {
+                    // const maskValues = (e: React.ChangeEvent<HTMLInputElement>) => {
                         
-                        // console.log(e.target.value);
+                    //     // console.log(e.target.value);
 
 
                         
 
-                        if(mask === 'birthday') {
-                            const {value } = e.target;
-                            return e.target.value = maskBirthday(value);
-                        }
+                    //     if(mask === 'birthday') {
+                    //         const {value } = e.target;
+                    //         return e.target.value = maskBirthday(value);
+                    //     }
 
-                        if(mask === 'real'){
-                            // console.log('real');
-                            const {value} = e.target;
-                            return e.target.value = maskCurrencyBR(value);
-                        }
-                        if(mask === 'dolar'){
-                            // console.log('dolar');
+                    //     if(mask === 'real'){
+                    //         // console.log('real');
+                    //         const {value} = e.target;
+                    //         return e.target.value = maskCurrencyBR(value);
+                    //     }
+                    //     if(mask === 'dolar'){
+                    //         // console.log('dolar');
 
-                            const {value} = e.target;
-                           return  e.target.value = maskCurrencyUS(value);
-                        }
+                    //         const {value} = e.target;
+                    //        return  e.target.value = maskCurrencyUS(value);
+                    //     }
 
-                        if(mask === 'BR'){
+                    //     if(mask === 'BR'){
                           
 
-                            const {value} = e.target;
-                            // console.log(value);
-                           return  e.target.value = maskBrazilianPhoneNumber2(value);
-                        }
+                    //         const {value} = e.target;
+                    //         // console.log(value);
+                    //        return  e.target.value = maskBrazilianPhoneNumber2(value);
+                    //     }
 
-                        if(mask === 'US'){
-                            // console.log('US');
+                    //     if(mask === 'US'){
+                    //         // console.log('US');
 
-                            const {value} = e.target;
-                            // console.log(value);
-                           return  e.target.value = maskUSPhoneNumber2(value);
-                        }
-                     }
+                    //         const {value} = e.target;
+                    //         // console.log(value);
+                    //        return  e.target.value = maskUSPhoneNumber2(value);
+                    //     }
+                    //  }
                  
                   
             return (
@@ -132,17 +132,15 @@ export interface InputProps
                         <input
                         ref={ref}
                         id={label}
+                        
                         className={inputField({className: `${leftIcon ? 'pl-10': null} ${leftSelect ? 'pl-16': null} ${error ? '!border-primary-error-300 shadow-input-on-error' : ''} pr-9`, primary, sizes})} {...props} 
                         type={inputType === 'password' ? isHidden ? 'password' : 'text' : 'text'} 
                         placeholder={placeholder}
                         name={label}
-                        // onChange={(e)=> {
-                        // maskValues(e)   
-                        // }}
                        
                           />
                         <div className="absolute right-[12px] top-[0.8rem] cursor-help">
-                            {inputType === 'password' ? null : !error ? '' : <Image src={tooltipError} alt='' width={16} height={16} />  }
+                            {/* {inputType === 'password' ? null : !error ? '' : ''  } */}
                             {tooltip || tooltip && error }
                         </div>
                         {/* RIGHT ICONS and SELECT */}
