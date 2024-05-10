@@ -9,7 +9,6 @@ import useWindowDimensions from '../utils/useWindowDimensions';
 import dots from './../../../public/images/dots.svg'
 import eyesClosed from './../../../public/icons/eyesClosed.svg'
 import google from './../../../public/icons/google.svg'
-import facebook from './../../../public/icons/facebook.svg'
 import { AnimatePresence, motion } from 'framer-motion'
 import InputField from './InputField';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -209,7 +208,7 @@ const MainMenu = () => {
                   initial='closed'
                   animate='open'
                   exit='exit'
-                  className='h-[460px] w-[350px] bg-primary-base-white absolute top-[60px] right-0 px-spacing-3xl py-spacing-3xl rounded-md'>
+                  className='h-[529px] w-[350px] bg-primary-base-white absolute top-[60px] right-0 px-spacing-3xl py-spacing-3xl rounded-md'>
                     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-5 w-full'>
                       <InputField 
                           className="text-primary-gray-700"
@@ -256,6 +255,7 @@ const MainMenu = () => {
                         <div className='flex flex-col gap-spacing-xl'>
                           <ButtonDesignSystem label='Sign In'  buttonType={'primary'} normal={'lg'} className='w-full !rounded-md' rightIcon={isLoading && <Image className="animate-spin" width={20} height={20} src={spinner} alt="Loading icon"/>}/>
                           <ButtonDesignSystem normal={'lg'} buttonType={"secondaryGray"} leftIcon={<Image src={google} alt='' />}  className="border-[#292E38] gap-spacing-lg !bg-transparent w-full !rounded-[8px]" label="Sign In with Google" />         
+                         <Link href='sign-up-foreigner'><ButtonDesignSystem normal={'lg'} buttonType={"secondaryGray"}   className="!border-primary-brand-300 !text-primary-brand-600 gap-spacing-lg !bg-primary-brand-25 w-full !rounded-[8px]" label="Sign up as a Foreigner" /> </Link> 
                         </div>
                       </div>
                       <small className=' text-center pt-spacing-lg text-primary-gray-600 text-text-sm'> Don&apos;t have an account? <span className='text-primary-brand-700 font-semibold'>Sign up</span></small>
@@ -274,7 +274,7 @@ const MainMenu = () => {
           </div>
       </div>
       {isMobileMenuOpen ? 
-        <div className='absolute top-0 translate-x-[0px] duration-700 transition-all bg-primary-gray-900 w-full h-[530px]'>
+        <div className='absolute top-0 translate-x-[0px] duration-700 transition-all bg-primary-gray-900 w-full h-[590px]'>
           <ul className='pt-[95px] flex flex-col gap-2'>
             <li className='py-spacing-lg px-spacing-xl w-full'>
               <Link href='/' className='text-primary-base-white font-semibold '>Home</Link>
@@ -316,6 +316,9 @@ const MainMenu = () => {
             <Link href='register/details'>          
               <ButtonDesignSystem normal={'lg'} buttonType={'secondaryGray'} label='Sign Up' className='w-full border-none !text-primary-base-white !bg-[#31344C] !rounded-[8px]' />
             </Link> 
+            <Link href="/sign-up-foreigner">
+              <ButtonDesignSystem normal={'lg'} buttonType={'secondaryGray'} label='Sign Up as a Foreigner' className='w-full border-none !text-primary-base-white !bg-[#31344C] !rounded-[8px]' />              
+            </Link>
           </div>
         </div>
         : 
@@ -378,7 +381,7 @@ const MainMenu = () => {
               <div className='flex flex-col gap-spacing-xl'>
                 <ButtonDesignSystem type='submit' normal={'lg'} buttonType={"primary"} className="border-none w-full !rounded-[8px]" label="Entrar" rightIcon={isLoading && <Image className="animate-spin" width={20} height={20} src={spinner} alt="Loading icon"/>} />         
                 <ButtonDesignSystem normal={'lg'} buttonType={"primary"} leftIcon={<Image src={google} alt='' />}  className="border-[#292E38] gap-spacing-lg  w-full !bg-[#0B111D] !rounded-[8px]" label="Entrar com Google" />         
-                <ButtonDesignSystem normal={'lg'} buttonType={"primary"} leftIcon={<Image src={facebook} alt='' />} className="border-[#292E38] gap-spacing-lg w-full !bg-[#0B111D] !rounded-[8px]" label="Entrar com Facebook" />         
+                <Link href='/sign-up-foreigner'> <ButtonDesignSystem normal={'lg'} buttonType={"primary"} className="border-primary-brand-700 gap-spacing-lg w-full !bg-primary-brand-900 text-primary-brand-400 !rounded-[8px]" label="Cadastrar como Estrangeiro(a)" />   </Link>
               </div>
             </form>
 
