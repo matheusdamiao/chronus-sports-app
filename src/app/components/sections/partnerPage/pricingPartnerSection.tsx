@@ -55,13 +55,13 @@ const PricingPartnerSection = () => {
                     <motion.div
                       className='lg:w-[242px] w-full lg:h-[380px] h-full  '>
                       <div className='flex flex-col justify-between h-full px-[20px] py-[20px]'>
-                        <div className='flex flex-col items-center justify-center'>
+                        <div className='flex flex-col lg:items-center lg:justify-center'>
                           <div className='flex flex-col w-[30px] h-[30px] rounded-full bg-secondary-green-100 items-center justify-center'>
                             <Image src={lightningGreen} alt='' width={15} height={15}/>
                           </div>
-                          <h4 className='text-secondary-green-400 text-center font-semibold text-text-xs leading-text-xs pt-[10px]'>Beginner</h4>
+                          <h4 className='text-secondary-green-400 font-semibold text-text-xs leading-text-xs pt-[10px]'>Beginner</h4>
                           <h3 className='text-display-sm leading-display-sm text-primary-base-white font-semibold pt-[5px]'>75-25%</h3>
-                          <p className='text-primary-gray-400 text-text-2xs leading-text-2xs text-center  pt-[5px]'>Billed annually.</p>
+                          <p className='text-primary-gray-400 text-text-2xs leading-text-2xs pt-[5px]'>Billed annually.</p>
                         </div>
 
                         <div className='flex flex-col gap-[10px] pt-[20px] pb-[25px]'>
@@ -108,13 +108,13 @@ const PricingPartnerSection = () => {
                     <motion.div
                       className='lg:w-[242px] w-full lg:h-[380px] h-full bg-gradient-bg-pricing-cards rounded-[8px] border-primary-base-white/5 border-[1px]'>
                       <div className='flex flex-col justify-between h-full px-[20px] py-[20px]'>
-                        <div className='flex flex-col items-center justify-center'>
+                        <div className='flex flex-col lg:items-center lg:justify-center'>
                           <div className='flex flex-col w-[30px] h-[30px] rounded-full bg-secondary-orange-100 items-center justify-center'>
                             <Image src={lightningGreen} alt='' width={15} height={15}/>
                           </div>
-                          <h4 className='text-secondary-green-400 text-center font-semibold text-text-xs leading-text-xs pt-[10px]'>Featured</h4>
+                          <h4 className='text-secondary-green-400 font-semibold text-text-xs leading-text-xs pt-[10px]'>Featured</h4>
                           <h3 className='text-display-sm leading-display-sm text-primary-base-white font-semibold pt-[5px]'>85-15%</h3>
-                          <p className='text-primary-gray-400 text-text-2xs leading-text-2xs text-center  pt-[5px]'>Billed every 3 years.</p>
+                          <p className='text-primary-gray-400 text-text-2xs leading-text-2xs pt-[5px]'>Billed every 3 years.</p>
                         </div>
 
                         <div className='flex flex-col gap-[10px] pt-[20px] pb-[25px]'>
@@ -161,13 +161,13 @@ const PricingPartnerSection = () => {
                     <motion.div
                       className='lg:w-[242px] w-full lg:h-[380px] h-full  '>
                       <div className='flex flex-col justify-between h-full px-[20px] py-[20px]'>
-                        <div className='flex flex-col items-center justify-center'>
+                        <div className='flex flex-col lg:items-center lg:justify-center'>
                           <div className='flex flex-col w-[30px] h-[30px] rounded-full bg-secondary-green-100 items-center justify-center'>
                             <Image src={lightningGreen} alt='' width={15} height={15}/>
                           </div>
-                          <h4 className='text-secondary-green-400 text-center font-semibold text-text-xs leading-text-xs pt-[10px]'>MVP</h4>
+                          <h4 className='text-secondary-green-400  font-semibold text-text-xs leading-text-xs pt-[10px]'>MVP</h4>
                           <h3 className='text-display-sm leading-display-sm text-primary-base-white font-semibold pt-[5px]'>90-10%</h3>
-                          <p className='text-primary-gray-400 text-text-2xs leading-text-2xs text-center  pt-[5px]'>Billed every 5 years.</p>
+                          <p className='text-primary-gray-400 text-text-2xs leading-text-2xs   pt-[5px]'>Billed every 5 years.</p>
                         </div>
 
                         <div className='flex flex-col gap-[10px] pt-[20px] pb-[25px]'>
@@ -230,13 +230,13 @@ const PricingPartnerSection = () => {
                   <motion.div
                       className='lg:w-[242px] w-full lg:h-[380px] h-full  '>
                       <div className='flex flex-col justify-between h-full px-[20px] py-[20px]'>
-                        <div className='flex flex-col items-center justify-center'>
+                        <div className='flex flex-col lg:items-center lg:justify-center'>
                           <div className='flex flex-col w-[30px] h-[30px] rounded-full bg-secondary-green-100 items-center justify-center'>
                             <Image src={lightningOrange} alt='' width={15} height={15}/>
                           </div>
-                          <h4 className='text-secondary-orange-500 text-center font-semibold text-text-xs leading-text-xs pt-[10px]'>Beginner</h4>
+                          <h4 className='text-secondary-orange-500  font-semibold text-text-xs leading-text-xs pt-[10px]'>Beginner</h4>
                           <h3 className='text-display-sm leading-display-sm text-primary-base-white font-semibold pt-[5px]'>50-50%</h3>
-                          <p className='text-primary-gray-400 text-text-2xs leading-text-2xs text-center  pt-[5px]'>Billed annually.</p>
+                          <p className='text-primary-gray-400 text-text-2xs leading-text-2xs pt-[5px]'>Billed annually.</p>
                         </div>
 
                         <div className='flex flex-col gap-[10px] pt-[20px] pb-[25px]'>
@@ -285,13 +285,13 @@ const PricingPartnerSection = () => {
                     <motion.div
                       className='lg:w-[242px] w-full lg:h-[380px] h-full  '>
                       <div className='flex flex-col justify-between h-full px-[20px] py-[20px]'>
-                        <div className='flex flex-col items-center justify-center'>
+                        <div className='flex flex-col lg:items-center lg:justify-center'>
                           <div className='flex flex-col w-[30px] h-[30px] rounded-full bg-secondary-green-100 items-center justify-center'>
                             <Image src={lightningOrange} alt='' width={15} height={15}/>
                           </div>
-                          <h4 className='text-secondary-orange-500 text-center font-semibold text-text-xs leading-text-xs pt-[10px]'>Featured</h4>
+                          <h4 className='text-secondary-orange-500 font-semibold text-text-xs leading-text-xs pt-[10px]'>Featured</h4>
                           <h3 className='text-display-sm leading-display-sm text-primary-base-white font-semibold pt-[5px]'>60-40%</h3>
-                          <p className='text-primary-gray-400 text-text-2xs leading-text-2xs text-center  pt-[5px]'>Billed every 2 years.</p>
+                          <p className='text-primary-gray-400 text-text-2xs leading-text-2xs pt-[5px]'>Billed every 2 years.</p>
                         </div>
 
                         <div className='flex flex-col gap-[10px] pt-[20px] pb-[25px]'>
@@ -341,13 +341,13 @@ const PricingPartnerSection = () => {
                     <motion.div
                       className='lg:w-[242px] w-full lg:h-[380px] h-full  '>
                       <div className='flex flex-col justify-between h-full px-[20px] py-[20px]'>
-                        <div className='flex flex-col items-center justify-center'>
+                        <div className='flex flex-col lg:items-center lg:justify-center'>
                           <div className='flex flex-col w-[30px] h-[30px] rounded-full bg-secondary-green-100 items-center justify-center'>
                             <Image src={lightningOrange} alt='' width={15} height={15}/>
                           </div>
-                          <h4 className='text-secondary-orange-500 text-center font-semibold text-text-xs leading-text-xs pt-[10px]'>MVP</h4>
+                          <h4 className='text-secondary-orange-500 font-semibold text-text-xs leading-text-xs pt-[10px]'>MVP</h4>
                           <h3 className='text-display-sm leading-display-sm text-primary-base-white font-semibold pt-[5px]'>70-30%</h3>
-                          <p className='text-primary-gray-400 text-text-2xs leading-text-2xs text-center  pt-[5px]'>Billed every 3 years.</p>
+                          <p className='text-primary-gray-400 text-text-2xs leading-text-2xs pt-[5px]'>Billed every 3 years.</p>
                         </div>
 
                         <div className='flex flex-col gap-[10px] pt-[20px] pb-[25px]'>
@@ -396,13 +396,13 @@ const PricingPartnerSection = () => {
                     <motion.div
                       className='lg:w-[242px] w-full lg:h-[380px] h-full bg-gradient-bg-pricing-cards rounded-[8px] border-primary-base-white/5 border-[1px]'>
                       <div className='flex flex-col justify-between h-full px-[20px] py-[20px]'>
-                        <div className='flex flex-col items-center justify-center'>
+                        <div className='flex flex-col lg:items-center lg:justify-center'>
                           <div className='flex flex-col w-[30px] h-[30px] rounded-full bg-secondary-orange-100 items-center justify-center'>
                             <Image src={lightningOrange} alt='' width={15} height={15}/>
                           </div>
-                          <h4 className='text-secondary-orange-500 text-center font-semibold text-text-xs leading-text-xs pt-[10px]'>All-Stars</h4>
+                          <h4 className='text-secondary-orange-500 font-semibold text-text-xs leading-text-xs pt-[10px]'>All-Stars</h4>
                           <h3 className='text-display-sm leading-display-sm text-primary-base-white font-semibold pt-[5px]'>80-20%</h3>
-                          <p className='text-primary-gray-400 text-text-2xs leading-text-2xs text-center  pt-[5px]'>Billed every 4 years.</p>
+                          <p className='text-primary-gray-400 text-text-2xs leading-text-2xs  pt-[5px]'>Billed every 4 years.</p>
                         </div>
 
                         <div className='flex flex-col gap-[10px] pt-[20px] pb-[25px]'>
@@ -452,13 +452,13 @@ const PricingPartnerSection = () => {
                     <motion.div
                       className='lg:w-[242px] w-full lg:h-[380px] h-full  '>
                       <div className='flex flex-col justify-between h-full px-[20px] py-[20px]'>
-                        <div className='flex flex-col items-center justify-center'>
+                        <div className='flex flex-col lg:items-center lg:justify-center'>
                           <div className='flex flex-col w-[30px] h-[30px] rounded-full bg-secondary-green-100 items-center justify-center'>
                             <Image src={lightningOrange} alt='' width={15} height={15}/>
                           </div>
-                          <h4 className='text-secondary-orange-500 text-center font-semibold text-text-xs leading-text-xs pt-[10px]'>Hall of Fame</h4>
+                          <h4 className='text-secondary-orange-500 font-semibold text-text-xs leading-text-xs pt-[10px]'>Hall of Fame</h4>
                           <h3 className='text-display-sm leading-display-sm text-primary-base-white font-semibold pt-[5px]'>90-10%</h3>
-                          <p className='text-primary-gray-400 text-text-2xs leading-text-2xs text-center  pt-[5px]'>Billed every 5 years.</p>
+                          <p className='text-primary-gray-400 text-text-2xs leading-text-2xs pt-[5px]'>Billed every 5 years.</p>
                         </div>
 
                         <div className='flex flex-col gap-[10px] pt-[20px] pb-[25px]'>

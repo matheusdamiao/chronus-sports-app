@@ -4,6 +4,11 @@ import React, { useEffect, useState } from 'react'
 import carousel1 from './../../../../../public/images/partnerss-carousel-1.webp'
 import carousel2 from './../../../../../public/images/partnerss-carousel-2.webp'
 import carousel3 from './../../../../../public/images/partnerss-carousel-3.webp'
+import carouselmob1 from './../../../../../public/images/caroussel-partner-mob-1.webp'
+import carouselmob2 from './../../../../../public/images/caroussel-partner-mob-2.webp'
+import carouselmob3 from './../../../../../public/images/caroussel-partner-mob-3.webp'
+
+
 import { AnimatePresence, motion } from 'framer-motion';
 import useWindowDimensions from 'src/app/utils/useWindowDimensions';
 
@@ -274,10 +279,10 @@ const handleCarouselImages = (id: number | null = null) => {
         }
         {isMobile &&
         <div className='w-full h-full'>
-            <h3 className='px-[28px] max-w-[590px] text-text-lg font-thin leading-text-lg text-center mx-auto text-primary-gray-200'>Discover our key advantages and become a part of the most comprehensive and diverse sports platform in the world.</h3>
+            {/* <h3 className='px-[28px] max-w-[590px] text-text-lg font-thin leading-text-lg text-center mx-auto text-primary-gray-200'>Discover our key advantages and become a part of the most comprehensive and diverse sports platform in the world.</h3> */}
             
-            <div className='px-spacing-xl mx-auto h-full flex flex-col pt-[55px] relative'>
-              <Image src={carousel1} alt='' className='z-20 w-full '/>
+            <div className='px-spacing-xl mx-auto h-full flex flex-col  relative'>
+              <Image src={carouselmob3} alt='' className='z-20 w-full '/>
               <span className='ellipse-carousel-1'></span>
               <div className='flex flex-col pt-[24px] gap-2 w-full'>
                     <h4 className='font-bold text-text-md leading-text-md text-primary-base-white'>Athlete</h4>
@@ -287,7 +292,7 @@ const handleCarouselImages = (id: number | null = null) => {
 
 
             <div className='px-spacing-xl mx-auto h-full flex flex-col pt-[55px] relative'>
-              <Image src={carousel2} alt='' className='z-20 w-full '/>
+              <Image src={carouselmob2} alt='' className='z-20 w-full '/>
               <span className='ellipse-carousel-1'></span>
               <div className='flex flex-col pt-[24px] gap-2 w-full'>
                     <h4 className='font-bold text-text-md leading-text-md text-primary-base-white'>Clubs & Federations</h4>
@@ -297,7 +302,7 @@ const handleCarouselImages = (id: number | null = null) => {
 
 
             <div className='px-spacing-xl mx-auto h-full flex flex-col pt-[55px] relative'>
-              <Image src={carousel3} alt='' className='z-20 w-full '/>
+              <Image src={carouselmob1} alt='' className='z-20 w-full '/>
               <span className='ellipse-carousel-1'></span>
               <div className='flex flex-col pt-[24px] gap-2 w-full'>
                     <h4 className='font-bold text-text-md leading-text-md text-primary-base-white'>Professionals</h4>
