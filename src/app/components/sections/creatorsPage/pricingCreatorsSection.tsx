@@ -55,13 +55,13 @@ const PricingCreatorsSection = () => {
                 <motion.div
                   className='lg:w-[290px] w-full lg:h-[380px] h-full  '>
                   <div className='flex flex-col justify-between h-full px-[20px] py-[20px]'>
-                    <div className='flex flex-col items-center justify-center'>
+                    <div className='flex flex-col lg:items-center lg:justify-center'>
                       <div className='flex flex-col w-[30px] h-[30px] rounded-full bg-secondary-orange-100 items-center justify-center'>
                         <Image src={lightningOrange} alt='' width={15} height={15}/>
                       </div>
-                      <h4 className='text-secondary-orange-500 text-center font-semibold text-text-xs leading-text-xs pt-[10px]'>Free Pass</h4>
+                      <h4 className='text-secondary-orange-500 first-letter:font-semibold text-text-xs leading-text-xs pt-[10px]'>Free Pass</h4>
                       <h3 className='text-display-sm leading-display-sm text-primary-base-white font-semibold pt-[5px]'>$0</h3>
-                      <p className='text-primary-gray-400 text-text-2xs leading-text-2xs text-center  pt-[5px]'>Lifetime access.</p>
+                      <p className='text-primary-gray-400 text-text-2xs leading-text-2xs  pt-[5px]'>Lifetime access.</p>
                     </div>
 
                     <div className='flex flex-col gap-[10px] pt-[20px] pb-[25px]'>
@@ -108,13 +108,13 @@ const PricingCreatorsSection = () => {
                 <motion.div
                   className='lg:w-[290px] w-full lg:h-[380px] h-full bg-gradient-bg-pricing-cards rounded-[8px] border-primary-base-white/5 border-[1px]'>
                   <div className='flex flex-col justify-between h-full px-[20px] py-[20px]'>
-                    <div className='flex flex-col items-center justify-center'>
+                    <div className='flex flex-col lg:items-center lg:justify-center'>
                       <div className='flex flex-col w-[30px] h-[30px] rounded-full bg-secondary-orange-100 items-center justify-center'>
                         <Image src={lightningOrange} alt='' width={15} height={15}/>
                       </div>
-                      <h4 className='text-secondary-orange-500 text-center font-semibold text-text-xs leading-text-xs pt-[10px]'>Most Popular</h4>
+                      <h4 className='text-secondary-orange-500 font-semibold text-text-xs leading-text-xs pt-[10px]'>Most Popular</h4>
                       <h3 className='text-display-sm leading-display-sm text-primary-base-white font-semibold pt-[5px]'>$10</h3>
-                      <p className='text-primary-gray-400 text-text-2xs leading-text-2xs text-center  pt-[5px]'>Billed annually.</p>
+                      <p className='text-primary-gray-400 text-text-2xs leading-text-2xs pt-[5px]'>Billed annually.</p>
                     </div>
 
                     <div className='flex flex-col gap-[10px] pt-[20px] pb-[25px]'>
@@ -174,13 +174,13 @@ const PricingCreatorsSection = () => {
                 <motion.div
                   className='lg:w-[290px] w-full lg:h-[380px] h-full bg-gradient-bg-pricing-cards rounded-[8px] border-primary-base-white/5 border-[1px]'>
                   <div className='flex flex-col justify-between h-full px-[20px] py-[20px]'>
-                    <div className='flex flex-col items-center justify-center'>
+                    <div className='flex flex-col lg:items-center lg:justify-center'>
                       <div className='flex flex-col w-[30px] h-[30px] rounded-full bg-secondary-orange-100 items-center justify-center'>
                         <Image src={lightningPink} alt='' width={15} height={15}/>
                       </div>
-                      <h4 className='text-secondary-pink-500 text-center font-semibold text-text-xs leading-text-xs pt-[10px]'>Most Popular</h4>
+                      <h4 className='text-secondary-pink-500 font-semibold text-text-xs leading-text-xs pt-[10px]'>Most Popular</h4>
                       <h3 className='text-display-sm leading-display-sm text-primary-base-white font-semibold pt-[5px]'>$1</h3>
-                      <p className='text-primary-gray-400 text-text-2xs leading-text-2xs text-center  pt-[5px]'>Billed annually.</p>
+                      <p className='text-primary-gray-400 text-text-2xs leading-text-2xs pt-[5px]'>Billed annually.</p>
                     </div>
 
                     <div className='flex flex-col gap-[10px] pt-[20px] pb-[25px]'>
@@ -227,13 +227,13 @@ const PricingCreatorsSection = () => {
                 <motion.div
                   className='lg:w-[290px] w-full lg:h-[380px] h-full  '>
                   <div className='flex flex-col h-full px-[20px] py-[20px]'>
-                    <div className='flex flex-col items-center justify-center'>
+                    <div className='flex flex-col lg:items-center lg:justify-center'>
                       <div className='flex flex-col w-[30px] h-[30px] rounded-full bg-secondary-orange-100 items-center justify-center'>
                         <Image src={lightningPink} alt='' width={15} height={15}/>
                       </div>
-                      <h4 className='text-secondary-pink-500 text-center font-semibold text-text-xs leading-text-xs pt-[10px]'>Monthly</h4>
+                      <h4 className='text-secondary-pink-500  font-semibold text-text-xs leading-text-xs pt-[10px]'>Monthly</h4>
                       <h3 className='text-display-sm leading-display-sm text-primary-base-white font-semibold pt-[5px]'>Contact Us</h3>
-                      <p className='text-primary-gray-400 text-text-2xs leading-text-2xs text-center  pt-[5px]'>Get the answers you need quickly via email. Our team is here for you!</p>
+                      <p className='text-primary-gray-400 text-text-2xs leading-text-2xs  pt-[5px]'>Get the answers you need quickly via email. Our team is here for you!</p>
                     </div>
 
                     

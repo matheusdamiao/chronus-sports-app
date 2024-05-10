@@ -6,10 +6,14 @@ import brazilIcon from './../../../../../public/icons/brazil.svg'
 import Image from 'next/image'
 import ButtonDesignSystem from '../../Button'
 
-const FooterSection = () => {
+interface ClassesType {
+  class?: string
+}
+
+const FooterSection = (props: ClassesType) => {
   return (
     <>
-      <div className='grid lg:grid-cols-5 grid-cols-2 w-full max-w-[940px] mx-auto gap-spacing-4xl lg:gap-spacing-3xl px-spacing-4xl lg:mt-0 mt-[200px] pb-16 border-b-[1px] border- border-primary-gray-800'>
+      <div className={`grid lg:grid-cols-5 grid-cols-2 w-full max-w-[940px] mx-auto gap-spacing-4xl lg:gap-spacing-3xl px-spacing-4xl lg:mt-0 mt-[200px] ${props.class} pb-16 border-b-[1px] border- border-primary-gray-800`}>
         <div className='flex flex-col gap-spacing-xl w-[150px]'>
           <h4 className='text-primary-base-white/[0.20] lg:text-primary-gray-400 text-text-md leading-text-md font-regular'> Produtos</h4>
           <ul className='flex flex-col gap-spacing-lg'>

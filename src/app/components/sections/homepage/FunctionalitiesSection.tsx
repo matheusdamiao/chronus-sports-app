@@ -1,5 +1,5 @@
 'use client';
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import ButtonDesignSystem from '../../Button'
 import Image from 'next/image'
 import partnerHeart from './../../../../../public/icons/partnerHeart.svg'
@@ -8,45 +8,112 @@ import chevronGreen from './../../../../../public/icons/chevronGreen.svg'
 import chevronBlue from './../../../../../public/icons/chevronBlue.svg'
 import image1 from './../../../../../public/images/desktop-image-upgrade-section-1.webp'
 import image2 from './../../../../../public/images/desktop-image-upgrade-section-2.webp'
+import { useInView, motion, useAnimation, inView } from 'framer-motion';
 
 
 const FunctionalitiesSection = () => {
+
+    const ref = useRef<HTMLDivElement>(null)
+
+    const isView = useInView(ref);
+    const animationControls = useAnimation();
+  
+    const TitleAnimation = {
+      hidden: {
+        opacity: 0, y: '80px',
+      },
+      show: {
+        opacity: 1, y: '0'
+      }
+    }
+
+    useEffect(()=>{
+        if(isView){
+            animationControls.start('show')
+        }
+   // eslint-disable-next-line
+    },[isView])
+
   return (
-    <div className='py-[50px] lg:pt-[100px] flex flex-col text-primary-base-white'>
-        <div className='flex flex-col items-center justify-center px-[28px] gap-[21px] lg:max-w-[580px] mx-auto'>
-            <h2 className='text-display-sm leading-display-sm tracking-display lg:text-display-lg font-bold lg:leading-display-lg text-center w-full'>The most <span className='complete'>complete</span><br /> sports platform</h2>
+    <div ref={ref} className='py-[50px] lg:pt-[100px] flex flex-col text-primary-base-white'>
+        <motion.div
+        initial='hidden'
+        animate={animationControls}
+        transition={{delay: 0.5, duration: 1}}
+        variants={TitleAnimation}
+        className='flex flex-col items-center justify-center px-[28px] gap-[21px] lg:max-w-[580px] mx-auto'>
+            <motion.h2 className='text-display-sm leading-display-sm tracking-display lg:text-display-lg font-bold lg:leading-display-lg text-center w-full'>The most <span className='complete'>complete</span><br /> sports platform</motion.h2>
             <h3 className='tracking-wide text-text-lg lg:text-text-md text-primary-gray-200 text-center w-[90%] lg:w-full font-thin leading-text-lg'>Discover our key advantages and become a part of the most comprehensive and diverse sports platform in the world.</h3>
-        </div>
+        </motion.div>
    
         <div className='py-[55px] lg:py-[73px] px-spacing-4xl flex lg:flex-wrap max-w-[950px] w-full lg:justify-center mx-auto gap-[45px] lg:gap-0 flex-wrap'>
-            <div className='flex relative flex-col gap-spacing-md lg:w-[250px] lg:h-[189px] lg:items-center lg:justify-center lg:pr-[30px] '>
+            <motion.div
+                 initial='hidden'
+                 variants={{
+                 hidden: {opacity: 0, y: '20px'},
+                 show: {opacity: 1, y: 0,}
+                 }}
+                 animate={animationControls}
+                 transition={{delay: 1.2, duration: 1}}
+                className='flex relative flex-col gap-spacing-md lg:w-[250px] lg:h-[189px] lg:items-center lg:justify-center lg:pr-[30px] '>
                 <h4 className='text-primary-base-white font-bold text-text-md leading-text-md'>Immersive mixed Reality</h4>
                 <p className='text-primary-gray-200 text-text-md leading-text-md font-regular lg:text-center lg:w-[80%] w-[90%]'>Technology for injury prevention and athlete protection.</p>
                 {/* division lines */}
                 <div className="hidden lg:block absolute w-[1px] h-[186px] bg-gradient-to-b from-[#FFFF]/[.20] opacity-20 to-[#FFFF]/[.05] right-0 top-0"></div>
                 <div className="hidden lg:block absolute w-[870px] h-[1px] bg-gradient-to-r from-[#FFFF]/[.20] opacity-20 to-[#FFFF]/[.05] left-0 bottom-0"></div>
 
-            </div>
-            <div className='flex flex-col gap-spacing-md lg:w-[250px] lg:h-[189px] lg:items-center lg:justify-center lg:mx-[30px]'>
+            </motion.div >
+            <motion.div
+                 initial='hidden'
+                 variants={{
+                 hidden: {opacity: 0, y: '20px'},
+                 show: {opacity: 1, y: 0,}
+                 }}
+                 animate={animationControls}
+                 transition={{delay: 1.4, duration: 1}} className='flex flex-col gap-spacing-md lg:w-[250px] lg:h-[189px] lg:items-center lg:justify-center lg:mx-[30px]'>
                 <h4 className='text-primary-base-white font-bold text-text-md leading-text-md'> Utilization of IoT Data </h4>
                 <p className='text-primary-gray-200 text-text-md leading-text-md font-regular lg:text-center w-[90%] '>Indicators that guide preventive measures, hiring and team management</p>
-            </div>
-            <div className='flex relative flex-col gap-spacing-md lg:w-[250px] lg:h-[189px] lg:items-center lg:justify-center lg:pl-[30px]'>
+            </motion.div>
+
+
+            <motion.div
+                 initial='hidden'
+                 variants={{
+                 hidden: {opacity: 0, y: '20px'},
+                 show: {opacity: 1, y: 0,}
+                 }}
+                 animate={animationControls}
+                 transition={{delay: 1.6, duration: 1}} className='flex relative flex-col gap-spacing-md lg:w-[250px] lg:h-[189px] lg:items-center lg:justify-center lg:pl-[30px]'>
                 {/* division line */}
                 <div className="hidden lg:block absolute w-[1px] h-[186px] bg-gradient-to-t from-[#FFFF]/[.20] opacity-20 to-[#FFFF]/[.05] left-0 top-0"></div>
                 <h4 className='text-primary-base-white font-bold text-text-md leading-text-md'>Professional Management</h4>
                 <p className='text-primary-gray-200 text-text-md leading-text-md font-regular lg:text-center w-[90%]'>Have greater financial and strategic control of the club.</p>
-            </div>
-            <div className='flex relative flex-col gap-spacing-md lg:w-[300px] lg:h-[189px] lg:items-center lg:justify-center lg:px-[30px]'>
+            </motion.div>
+
+            <motion.div
+                 initial='hidden'
+                 variants={{
+                 hidden: {opacity: 0, y: '20px'},
+                 show: {opacity: 1, y: 0,}
+                 }}
+                 animate={animationControls}
+                 transition={{delay: 1.8, duration: 1}} className='flex relative flex-col gap-spacing-md lg:w-[300px] lg:h-[189px] lg:items-center lg:justify-center lg:px-[30px]'>
                 <h4 className='text-primary-base-white font-bold text-text-md leading-text-md'>Centralization of data</h4>
                 <p className='text-primary-gray-200 text-text-md leading-text-md font-regular lg:text-center w-[90%]'>Follow your favorite athletes and clubs with all the news and updates dedicated to them.</p>
                 {/* division line */}
                 <div className="hidden lg:block absolute w-[1px] h-[186px] bg-gradient-to-t from-[#FFFF]/[.20] opacity-20 to-[#FFFF]/[.05] right-0 top-0"></div>
-            </div>
-            <div className='flex flex-col gap-spacing-md lg:w-[250px] lg:h-[189px] lg:items-center lg:justify-center lg:mx-[30px]'>
+            </motion.div>
+            <motion.div
+                 initial='hidden'
+                 variants={{
+                 hidden: {opacity: 0, y: '20px'},
+                 show: {opacity: 1, y: 0,}
+                 }}
+                 animate={animationControls}
+                 transition={{delay: 2, duration: 1}} className='flex flex-col gap-spacing-md lg:w-[250px] lg:h-[189px] lg:items-center lg:justify-center lg:mx-[30px]'>
                 <h4 className='text-primary-base-white font-bold text-text-md leading-text-md'>Self-employed professionals</h4>
                 <p className='text-primary-gray-200 text-text-md leading-text-md font-regular lg:text-center lg:w-[80%] w-[90%]'>Encontre profissionais especilizados em todas as áreas e contrate-os. </p>
-            </div>
+            </motion.div>
         </div>
 
 
