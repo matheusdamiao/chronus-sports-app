@@ -16,7 +16,8 @@ export const inputField = cva(
                 'dark': 'border-[#292E38] bg-transparent ', 
                 'small-dark': 'flex-grow-0 flex-0 !max-w-[100px] w-full border-[#292E38] bg-transparent',
                 'big-dark': 'border-[#292E38] bg-transparent',
-                'dark-with-bg': 'border-[#292E38] bg-primary-gray-800 text-primary-gray-600'
+                'dark-with-bg': 'border-[#292E38] bg-primary-gray-800 text-primary-gray-600',
+                'dark-subscribe-foreigner': 'lg:w-[440px] !bg-[#0B111D] placeholder:text-primary-gray-700 text-primary-gray-25 border-[#292E38]'
             },
             sizes:{
                sm:'py-spacing-md px-[12px]',
