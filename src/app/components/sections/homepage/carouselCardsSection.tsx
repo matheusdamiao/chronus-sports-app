@@ -58,7 +58,7 @@ const CarouselCardsSection = () => {
       },[isView])  
 
   return (
-    <div className='w-full h-full relative py-[50px] overflow-hidden'>
+    <div className='w-full h-full relative pt-[50px]'>
         <span className='bg-gradient-carousel'></span>
        
         <section className="embla">

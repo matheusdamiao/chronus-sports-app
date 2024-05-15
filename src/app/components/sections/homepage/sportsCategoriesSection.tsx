@@ -31,7 +31,7 @@ const SportsCategoriesSection = () => {
   },[isView])
 
   return (
-    <div className=' flex flex-col max-w-7xl w-full mx-auto lg:py-36 p-0'>
+    <div className=' flex flex-col max-w-7xl w-full mx-auto lg:py-36 pt-[50px]'>
         <div className='relative'>
             <span className='bg-blue-blured'></span>
             <motion.div
