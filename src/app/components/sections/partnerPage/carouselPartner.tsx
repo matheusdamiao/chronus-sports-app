@@ -133,7 +133,7 @@ const handleCarouselImages = (id: number | null = null) => {
     zero: ()=> ({
       width: '0%',
       transition: {
-        duration: '0.5'
+        duration: '0'
       },
       boxShadow: 'none',
       background: 'none',

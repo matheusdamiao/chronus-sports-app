@@ -2,7 +2,8 @@ import { Metadata } from 'next';
 import StepsMenuSignUp from '../components/sections/stepsMenuSignUp';
 import Image from 'next/image';
 import bg from './../../../public/images/dots.svg'
-import logo from './../../../public/images/logo-chronus-sports-and-name-white.svg'
+import logoMobile from './../../../public/images/logos-chronos/logo-menu-mobile-simple.svg'
+import logoDesktop from './../../../public/images/logos-chronos/logo-desktop-horizontal-text.svg'
 import Link from 'next/link';
 
 
@@ -22,7 +23,8 @@ export default function RootLayout({
       <div className="flex lg:flex-row flex-col relative lg:h-[1200px] h-full ">
         <div className='absolute text-primary-warning-25 h-spacing-9xl z-[9999] lg:pl-spacing-4xl py-spacing-3xl px-spacing-xl lg:pt-spacing-4xl
          w-full'  >
-          <Link href='/'><Image src={logo} width={120} height={33} alt=''/></Link>
+          <Link href='/'><Image src={logoDesktop} width={188} height={32} alt='' className='hidden lg:block'/></Link>
+          <Link href='/'><Image src={logoMobile} alt='' width={43} height={43} className='lg:hidden block'/> </Link>
         </div>
         <div className="col-span-2 bg-[#0B111D]  lg:bg-[#161B26] lg:max-w-[450px] w-full z-[999]">
           <StepsMenuSignUp/> 

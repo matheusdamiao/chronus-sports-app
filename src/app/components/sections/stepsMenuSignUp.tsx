@@ -9,7 +9,7 @@ const StepsMenuSignUp = () => {
     const pathName =  usePathname();
    
   return (
-    <div className='flex flex-col justify-between lg:h-screen lg:sticky top-0 relative'>
+    <div className='flex flex-col justify-between h-full relative'>
         <div className=' pt-spacing-6xl mt-spacing-9xl w-full flex lg:flex-col justify-center px-[45px] lg:pl-[30px] z-[999] gap-[30px] lg:gap-[40px] font-sans'>
 
             {/* step one */}

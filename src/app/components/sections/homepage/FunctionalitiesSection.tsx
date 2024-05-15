@@ -9,6 +9,7 @@ import chevronBlue from './../../../../../public/icons/chevronBlue.svg'
 import image1 from './../../../../../public/images/desktop-image-upgrade-section-1.webp'
 import image2 from './../../../../../public/images/desktop-image-upgrade-section-2.webp'
 import { useInView, motion, useAnimation, inView } from 'framer-motion';
+import Link from 'next/link';
 
 
 const FunctionalitiesSection = () => {
@@ -119,7 +120,7 @@ const FunctionalitiesSection = () => {
 
         {/* CARDS */}
         <div className='flex flex-wrap sm:justify-center gap-spacing-xl max-w-[950px] lg:mx-auto'>
-            <div className='hover:translate-y-[-5px] transition-transform lg:mx-0 mx-4 relative pl-[30px] lg:pl-[42px] pt-[38px] w-full sm:w-[359px] lg:w-[427px] overflow-hidden h-[479px] rounded-4xl border-[1px] border-solid border-[#1E1B3A] bg-gradient-card'>
+            <Link href='/partners' className='hover:translate-y-[-5px] hover:brightness-150 transition-transform lg:mx-0 mx-4 relative pl-[30px] lg:pl-[42px] pt-[38px] w-full sm:w-[359px] lg:w-[427px] overflow-hidden h-[479px] rounded-4xl border-[1px] border-solid border-[#1E1B3A] bg-gradient-card'>
                 <div className='flex flex-col gap-spacing-2xl'>
                     <ButtonDesignSystem label='Become a Partner' className='w-[230px] bg-gradient-button-green border-none outline-1 outline outline-offset-0 outline-primary-base-white/[0.05] !text-primary-base-white' leftIcon={<Image src={partnerHeart} alt='' width={20} height={20}/>}  rightIcon={<Image src={chevronGreen} alt=''  width={20} height={20} />} buttonType={'secondaryGray'} normal={'lg'}/>
                     <p className='w-[260px] text-text-md leading-text-md font-thin'>We are a partner you can trust. Join us and expand your career.</p>
@@ -129,8 +130,8 @@ const FunctionalitiesSection = () => {
                         <Image src={image1} alt='' fill/>
                     </div>
                 </div>
-            </div>
-            <div className='hover:translate-y-[-5px] transition-transform lg:mx-0 mx-4 relative pl-[30px] lg:pl-[42px] pt-[38px] w-full sm:w-[359px] lg:w-[427px] h-[479px] overflow-hidden rounded-4xl border-[1px] border-solid border-[#1E1B3A] bg-gradient-card'>
+            </Link>
+            <Link href='/creators' className='hover:translate-y-[-5px] hover:brightness-150  transition-transform lg:mx-0 mx-4 relative pl-[30px] lg:pl-[42px] pt-[38px] w-full sm:w-[359px] lg:w-[427px] h-[479px] overflow-hidden rounded-4xl border-[1px] border-solid border-[#1E1B3A] bg-gradient-card'>
                 <div className='flex flex-col gap-spacing-2xl'>
                     <ButtonDesignSystem label='Become a Creator' className='w-[230px] bg-gradient-button-orange border-none outline-1 outline outline-offset-0 outline-primary-base-white/[0.05] !text-primary-base-white' leftIcon={<Image src={at} alt='' width={20} height={20}/>}  rightIcon={<Image src={chevronBlue} alt=''  width={20} height={20} />} buttonType={'secondaryGray'} normal={'lg'}/>
                     <p className='w-[260px] text-text-md leading-text-md font-thin'>Connect your fans to you and get paid fairly for it.</p>
@@ -140,7 +141,7 @@ const FunctionalitiesSection = () => {
                         <Image src={image2} alt='' fill/>
                     </div>
                 </div>
-            </div>
+            </Link>
         </div>
 
     </div>

@@ -13,6 +13,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import InputField from './InputField';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import spinner from './../../../public/icons/spinner.svg'
+import { usePathname } from 'next/navigation'
 
 
 type IFormInput = {
@@ -31,9 +32,13 @@ const MainMenu = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   const btnModal = useRef<HTMLButtonElement>(null);
 
+  const path = usePathname();
+
   const { register, handleSubmit, setError, setValue, formState: {errors}} = useForm<IFormInput>({mode: 'onSubmit'})
 
   useEffect(() => {
+
+
       if(size){
 
       if (size.width > 1000) {
@@ -154,23 +159,23 @@ const MainMenu = () => {
     <div className='h-[80px] w-full bg-transparent absolute top-0 z-[99999]'>
       <div className='z-[88888] relative max-w-7xl w-full px-spacing-xl lg:px-spacing-4xl py-[24px] lg:py-[18px] mx-auto flex justify-between'> 
           
-          <div className='w-full flex gap-[40px]'>
-            <Image src={logoDesktop} alt='' width={188} height={32} className='hidden lg:block'/>
-            <Image src={logoMobile} alt='' width={43} height={43} className='lg:hidden block'/>  
+          <div className='w-full flex lg:gap-[40px]'>
+            <Link href='/'><Image src={logoDesktop} alt='' width={188} height={32} className='hidden lg:block'/></Link>
+            <Link href='/'><Image src={logoMobile} alt='' width={43} height={43} className='lg:hidden block'/> </Link>
           
           
             <ul className='items-center gap-spacing-4xl hidden lg:flex'>
               <li>
-                <Link href='/' className='text-primary-base-white font-medium'> Home</Link>
+                <Link href='/' className={`text-primary-base-white font-medium underline-offset-4 ${path === '/' && 'underline font-semibold'}`}> Home</Link>
               </li>
               <li>
-                <Link href='#'  className='text-primary-base-white font-medium'> Clients</Link>
+                <Link href='#'  className='text-primary-base-white font-medium underline-offset-4'> Clients</Link>
               </li>
               <li>
-                <Link href='/creators'  className='text-primary-base-white font-medium'>Creators</Link>
+                <Link href='/creators'  className={`text-primary-base-white font-medium underline-offset-4 ${path === '/creators' && 'underline font-semibold'}`}>Creators</Link>
               </li>
               <li>
-                <Link href='/partners'  className='text-primary-base-white font-medium'>Partners</Link>
+                <Link href='/partners'  className={`text-primary-base-white font-medium underline-offset-4 ${path === '/partners' && 'underline font-semibold'}`}>Partners</Link>
               </li>
               <li>
                 <Link href='#'  className='text-primary-base-white font-medium'> Pricing</Link>
