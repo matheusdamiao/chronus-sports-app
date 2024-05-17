@@ -194,8 +194,7 @@
 @media screen and (max-width: 1000px) {
     .bg-gradient-carousel {
         top: 400px;
-        left: -300px;
-        width: 1000px;
+        width: 100%;
         height: 500px;
         border-radius: 274px;
     }
@@ -680,4 +679,183 @@
     100% {
         transform: rotate(0deg);
     }
+}
+
+
+
+/* ////////////////////////// Virtual reality Page ///////////////////// */
+
+
+.bg-blured-hero-vr {
+    border-radius: 1177px;
+    opacity: 0.5;
+    background: linear-gradient(272deg, #770DFF -0.63%, #8729FF 99.75%);
+    filter: blur(150px);
+    width: 538px;
+    height: 1177px;
+    position: absolute;
+    left: 0;
+    margin: 0 auto;
+    right: 0;
+    top: -818px;
+}
+
+.bg-blured-hero-image {
+    border-radius: 308.531px;
+    opacity: 0.7;
+    background: linear-gradient(272deg, #770DFF -0.63%, #8729FF 99.75%);
+    filter: blur(128.554443359375px);
+    width: 324.986px;
+    height: 172.777px;
+    position: absolute;
+    left: 0;
+    margin: 0 auto;
+    right: 0;
+    top: 115px;
+}
+
+@media screen and (max-width: 1000px) {
+
+    .bg-blured-hero-vr {
+        width: 238px;
+        height: 500px;
+        filter: blur(64.125px);
+        border-radius: 503px;
+        top: -181px;
+    }
+
+    .bg-blured-hero-image {
+        width: 100%;
+        border-radius: 182.552px;
+        filter: blur(76.06346130371094px);
+        width: 178px;
+        height: 102px;
+        top: 50px;
+    }
+}
+
+
+.bg-gradient-title-dive-into-game {
+    background: linear-gradient(90deg, #40ECDC 13.84%, #511FE8 83.81%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.bg-gradient-title-game-perspective {
+    background: linear-gradient(90deg, #FD2063 23.34%, #FE922C 89.58%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.bg-blured-game-perspective-section {
+    width: 1152px;
+    height: 609px;
+    border-radius: 304.649px;
+    opacity: 0.5;
+    background: linear-gradient(90deg, #FD2063 0%, #FE922C 100%);
+    filter: blur(125px);
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+
+@media screen and (max-width: 1200px) {
+
+    .bg-blured-game-perspective-section {
+        width: 100%;
+        height: 50%;
+        object-fit: contain;
+    }
+
+
+}
+
+
+.bg-gradient-title-athlete-immersive {
+    background: linear-gradient(90deg, #FFDB2F 50.64%, #FF7C13 81.03%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+.bg-gradient-title-experience-sports {
+    background: var(--Base-White, linear-gradient(90deg, #2BEDC0 60.83%, #F8DF00 86.86%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bg-blured-experience-sports {
+    width: 1152px;
+    height: 705.651px;
+    border-radius: 463.5px;
+    opacity: 0.4;
+    background: linear-gradient(90deg, #2BEDC0 0%, #F8DF00 100%);
+    filter: blur(125px);
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+
+.bg-gradient-title-glasses {
+    background: var(--Base-White, linear-gradient(90deg, #FD2063 55.81%, #FE922C 97.8%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@media screen and (max-width: 1200px) {
+
+    .bg-blured-experience-sports {
+        height: 100%;
+        width: 100%;
+        filter: blur(33.72810745239258px);
+    }
+
+}
+
+
+
+.bg-blured-faces-virtual-reality {
+    border-radius: 304.649px;
+    opacity: 0.24;
+    background: linear-gradient(90deg, #2BEDC0 0%, #1CE959 100%);
+    filter: blur(125px);
+    width: 1090px;
+    height: 472px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.bg-gradient-title-faces {
+    background: linear-gradient(90deg, #2BEDC0 23.63%, #1CE959 57.36%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+@media screen and (max-width: 1200px) {
+
+    .bg-blured-faces-virtual-reality {
+        border-radius: 98.181px;
+        opacity: 0.24;
+        background: linear-gradient(90deg, #2BEDC0 0%, #1CE959 100%);
+        height: 100%;
+        width: 90%;
+        filter: blur(40.284549713134766px);
+    }
+
 }
