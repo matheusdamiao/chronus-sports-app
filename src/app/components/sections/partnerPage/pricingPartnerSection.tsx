@@ -31,7 +31,7 @@ const PricingPartnerSection = () => {
   }
 
   return (
-    <div className='flex flex-col lg:pt-[200px] py-[100px] h-full text-primary-base-white'>
+    <div className='flex flex-col lg:pt-[200px] pt-[100px] h-full text-primary-base-white'>
          <div className='flex flex-col items-center justify-center px-[28px] gap-[21px] lg:max-w-[570px] mx-auto'>
             <h2 className='text-display-sm leading-display-sm tracking-display lg:text-display-lg font-bold lg:leading-display-lg text-center w-full'>Plans & Pricing</h2>
             <h3 className='tracking-wide text-text-lg lg:text-text-md text-primary-gray-200 text-center w-full inline-flex font-thin leading-text-lg'>Chronus Sports is your opportunity to own, sell, and trade official digital collectible NFTs of the world&apos;s best professional athletes.</h3>
@@ -57,12 +57,12 @@ const PricingPartnerSection = () => {
             </div>
         </div>
 
-        <div className={`flex items-center justify-center pt-[73px] gap-[30px] relative ${isSubscription ? 'lg:h-[300px] h-[750px] sm:h-[500px]': 'lg:h-[300px]  h-[1900px]'} ${!isSubscription && isForProfessionals && 'h-[700px]'} ${!isSubscription && !isForProfessionals ? 'xl:!h-[350px] lg:h-[800px] min-[730px]:h-[1200px] min-[700px]:h-[1450px] h-[2000px]' : ''} `}>
+        <div className={`flex items-center justify-center pt-[73px] gap-[30px] overflow-hidden relative ${isSubscription ? 'lg:h-[500px] h-[750px] ': 'lg:h-[500px]  h-[1900px]'} ${!isSubscription && isForProfessionals && 'h-[750px]'} ${!isSubscription && !isForProfessionals ? 'xl:!h-[500px] lg:h-[800px] min-[730px]:h-[1200px] min-[700px]:h-[1450px] h-[2000px]' : ''} ${isSubscription && !isForProfessionals && 'h-[900px] '} `}>
             <AnimatePresence>
 
                 {isSubscription && isForProfessionals && 
                   <motion.div
-                    className='flex items-center justify-center lg:flex-row flex-wrap w-full absolute lg:px-0 px-4 pb-[150px] top-[50px]'
+                    className='flex items-center justify-center lg:flex-row flex-wrap w-full absolute lg:px-0 px-4 pb-[100px] top-[50px]'
                     key={1}
                     variants={modalVariants}
                     initial='closed'
@@ -72,7 +72,7 @@ const PricingPartnerSection = () => {
                     >
 
                     <motion.div
-                      className='max-w-[335px] w-full lg:h-[426px] h-full bg-gradient-bg-pricing-cards rounded-[8px] border-primary-base-white/5 border-[1px]'>
+                      className='max-w-[335px] w-full h-[426px] bg-gradient-bg-pricing-cards rounded-[8px] border-primary-base-white/5 border-[1px]'>
                       <div className='flex flex-col justify-between h-full px-[20px] py-[20px]'>
                         <div className='flex flex-col items-center justify-center'>
                           <div className='flex flex-col w-[40px] h-[40px] rounded-full bg-secondary-green-100 items-center justify-center'>
@@ -125,7 +125,7 @@ const PricingPartnerSection = () => {
                     </motion.div>
 
                     <motion.div
-                      className='max-w-[335px] w-full lg:h-[426px] h-full rounded-[8px] '>
+                      className='max-w-[335px] w-full h-[426px] rounded-[8px] '>
                       <div className='flex flex-col  h-full px-[20px] py-[20px]'>
                         <div className='flex flex-col items-center justify-center'>
                           <div className='flex flex-col w-[40px] h-[40px] rounded-full bg-secondary-green-100 items-center justify-center'>
@@ -145,7 +145,7 @@ const PricingPartnerSection = () => {
                   } 
                   {isSubscription && !isForProfessionals &&
                     <motion.div
-                    className='flex items-center justify-center lg:flex-row flex-col flex-wrap w-full absolute lg:px-0 px-4 pb-[150px] top-[50px]'
+                    className='flex items-center justify-center lg:flex-row  flex-wrap w-full absolute lg:px-0 px-4 pb-[100px] top-[50px]'
                     key={4}
                     variants={modalVariants}
                     initial='closed'
@@ -271,7 +271,7 @@ const PricingPartnerSection = () => {
               animate={{opacity: '1', x: '0px'}}  
               exit={{opacity: '0', x: '-10px'}}
               transition={{ type: "spring", bounce: 0.25, duration: '1' }}
-              className='flex  items-center justify-center flex-wrap lg:flex-row w-full  lg:px-0 px-4 pb-[150px] absolute top-[50px]'
+              className='flex  items-center justify-center flex-wrap lg:flex-row w-full  lg:px-0 px-4 pb-[100px] absolute top-[50px]'
                 >
                
                   {/*//////////////// card 1 //////////////////*/}
@@ -571,7 +571,7 @@ const PricingPartnerSection = () => {
             }
             {!isSubscription && isForProfessionals &&
               <motion.div
-                className='flex items-center justify-center lg:flex-row flex-col flex-wrap w-full absolute lg:px-0 px-4 pb-[150px] top-[50px]'
+                className='flex items-center justify-center lg:flex-row  flex-wrap w-full absolute lg:px-0 px-4 pb-[150px] top-[50px]'
                 key={7}
                 variants={modalVariants}
                 initial='closed'
@@ -581,7 +581,7 @@ const PricingPartnerSection = () => {
                 >
 
                 <motion.div
-                  className='max-w-[335px] w-full lg:h-[426px] h-full bg-gradient-bg-pricing-cards rounded-[8px] border-primary-base-white/5 border-[1px]'>
+                  className='max-w-[335px] w-full h-[426px]  bg-gradient-bg-pricing-cards rounded-[8px] border-primary-base-white/5 border-[1px]'>
                   <div className='flex flex-col justify-between h-full px-[20px] py-[20px]'>
                     <div className='flex flex-col items-center justify-center'>
                       <div className='flex flex-col w-[40px] h-[40px] rounded-full bg-secondary-green-100 items-center justify-center'>
@@ -634,7 +634,7 @@ const PricingPartnerSection = () => {
                 </motion.div>
 
                 <motion.div
-                  className='max-w-[335px] w-full lg:h-[426px] h-full rounded-[8px] '>
+                  className='max-w-[335px] w-full h-[426px] rounded-[8px] '>
                   <div className='flex flex-col  h-full px-[20px] py-[20px]'>
                     <div className='flex flex-col items-center justify-center'>
                       <div className='flex flex-col w-[40px] h-[40px] rounded-full bg-secondary-green-100 items-center justify-center'>
